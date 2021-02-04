@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.springdata.repository;
+package br.edu.ifpb.dac.springdata.service;
 
 import java.util.List;
 
@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.Author;
+import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
 
 @Service
-public class AuthorRepositoryImpl {
+public class AuthorService {
 	
 	@Autowired
 	private AuthorRepository authorRepository;

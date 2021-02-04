@@ -8,22 +8,23 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
-import br.edu.ifpb.dac.springdata.repository.AuthorRepositoryImpl;
-import br.edu.ifpb.dac.springdata.repository.BookRepositoryImpl;
+import br.edu.ifpb.dac.springdata.service.AuthorService;
+import br.edu.ifpb.dac.springdata.service.BookService;
 
 @SpringBootApplication
 public class SpringdataApplication implements CommandLineRunner {
 
-	private final BookRepositoryImpl bookRepositoryImpl;
+	private final BookService bookService;
 	
-	private final AuthorRepositoryImpl authorRepositoryImpl;
+	private final AuthorService authorService;
 	
-	public SpringdataApplication(BookRepositoryImpl bookRepositoryImpl,AuthorRepositoryImpl authorRepositoryImpl) {
-		this.bookRepositoryImpl = bookRepositoryImpl;
-		this.authorRepositoryImpl = authorRepositoryImpl;
+	public SpringdataApplication(BookService bookRepositoryImpl,AuthorService authorRepositoryImpl) {
+		this.bookService = bookRepositoryImpl;
+		this.authorService = authorRepositoryImpl;
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -38,15 +39,15 @@ public class SpringdataApplication implements CommandLineRunner {
 		//Pre Cadastro Autores
 		Author author01 = new Author();
 		author01.setName("Bernard Cornwell");
-		authorRepositoryImpl.save(author01);
+		authorService.save(author01);
 		
 		Author author02 = new Author();
 		author02.setName("C.S. Lewis");
-		authorRepositoryImpl.save(author02);
+		authorService.save(author02);
 		
 		Author author03 = new Author();
 		author03.setName("J. K. Rowling");
-		authorRepositoryImpl.save(author03);
+		authorService.save(author03);
 		
 		//Pre Cadastro Livros
 		Book book01 = new Book();
@@ -56,8 +57,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book01.setIllustrations(true);
 		book01.setIsbn("978-8578270698");
 		book01.setNbOfPage(752);
-		bookRepositoryImpl.saveAuthor(2l, book01);
-		bookRepositoryImpl.save(book01);
+		bookService.saveAuthor(2l, book01);
+		bookService.save(book01);
 		System.out.println(book01.getAuthors().get(0).getName());
 		
 		
@@ -68,8 +69,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book02.setIllustrations(false);
 		book02.setIsbn("978-8501061140");
 		book02.setNbOfPage(546);
-		bookRepositoryImpl.saveAuthor(1l, book02);
-		bookRepositoryImpl.save(book02);
+		bookService.saveAuthor(1l, book02);
+		bookService.save(book02);
 		
 		Book book03 = new Book();
 		book03.setTitle("O inimigo de Deus (Vol. 2 As Crônicas de Artur)");
@@ -78,8 +79,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book03.setIllustrations(false);
 		book03.setIsbn("978-8501061188");
 		book03.setNbOfPage(518);
-		bookRepositoryImpl.saveAuthor(1l, book03);
-		bookRepositoryImpl.save(book03);
+		bookService.saveAuthor(1l, book03);
+		bookService.save(book03);
 		
 		Book book04 = new Book();
 		book04.setTitle("Harry Potter e a pedra filosofal");
@@ -88,8 +89,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book04.setIllustrations(false);
 		book04.setIsbn("978-8532531766");
 		book04.setNbOfPage(256);
-		bookRepositoryImpl.saveAuthor(2l, book04);
-		bookRepositoryImpl.save(book04);
+		bookService.saveAuthor(2l, book04);
+		bookService.save(book04);
 		
 		
 		boolean con = true;
@@ -143,7 +144,7 @@ public class SpringdataApplication implements CommandLineRunner {
 					if(AuthorOp .equalsIgnoreCase("S")) {
 						
 						for(int x = 0; x < authorsId.size();x++ ) {
-							bookRepositoryImpl.saveAuthor(authorsId.get(x), newBook);
+							bookService.saveAuthor(authorsId.get(x), newBook);
 						}
 					}
 					else {					
@@ -164,7 +165,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				newBook.setIllustrations(illustrations);
 				newBook.setIsbn(isbn);
 				newBook.setNbOfPage(NbOfPages);
-				bookRepositoryImpl.save(newBook);
+				bookService.save(newBook);
 				
 				System.out.println("Livro Cadastrado Com Sucesso!!");
 				
@@ -178,14 +179,14 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 				newAuthor.setName(name);
 				
-				authorRepositoryImpl.save(newAuthor);
+				authorService.save(newAuthor);
 				System.out.println("Author Salvo com Sucesso!!");
 				
 			}
 			else if(chosenOption == 3) {
 				
 				System.out.println("Id do livro a ser editado: ");
-				Book updateBook = bookRepositoryImpl.findById(Long.parseLong(input.nextLine()));
+				Book updateBook = bookService.findById(Long.parseLong(input.nextLine()));
 				
 				System.out.println("Atual: " + updateBook.getTitle());
 				System.out.println("Novo Title: ");
@@ -223,7 +224,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				updateBook.setIsbn(isbn);
 				updateBook.setNbOfPage(NbOfPages);
 				
-				bookRepositoryImpl.save(updateBook);
+				bookService.save(updateBook);
 			}
 			else if(chosenOption == 4){
 				//OPÇÃO PARA DELETAR UM LIVRO
@@ -231,23 +232,28 @@ public class SpringdataApplication implements CommandLineRunner {
 				System.out.println("ID do livro a ser deletado: ");
 				Long bookIdDelete = Long.parseLong(input.nextLine());
 				
-				bookRepositoryImpl.deleteById(bookIdDelete);
+				bookService.deleteById(bookIdDelete);
 				System.out.println("Livro Deletado");
 				
 			}
 			else if(chosenOption == 5) {
 				//MODO DE EXIBIÇÃO DOS LIVROS POR PAGINA
 				
-				System.out.println("Escolha a pagina de 0 a : " + (bookRepositoryImpl.countPage() - 1));
+				System.out.println("Escolha a pagina de 0 a : " + (bookService.countPage() - 1));
 				int pagOp = Integer.parseInt(input.nextLine());
 
-				List<Book> books = bookRepositoryImpl.showBook(bookRepositoryImpl.findAll(pagOp, 3));
+				List<Book> books = bookService.showBook(bookService.findAll(pagOp, 3));
 				
 				for(int i = 0; i < books.size();i++) {
 									
 					System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
 								
 				}
+			}
+			else if(chosenOption == 6) {
+				
+				
+				
 			}
 			
 		}

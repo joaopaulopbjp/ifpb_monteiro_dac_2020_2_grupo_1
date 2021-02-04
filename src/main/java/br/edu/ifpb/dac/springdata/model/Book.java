@@ -44,7 +44,7 @@ public class Book {
 	
 	private String title;
 	
-	private float price;
+	private double price;
 	
 	private String description;
 	
@@ -87,11 +87,11 @@ public class Book {
 		this.title = title;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

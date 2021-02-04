@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.springdata.repository;
+package br.edu.ifpb.dac.springdata.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
+import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
+import br.edu.ifpb.dac.springdata.repository.BookRepository;
 
 @Controller
-public class BookRepositoryImpl{
+public class BookService{
 
 	@Autowired
 	private BookRepository bookRepository;
@@ -96,7 +99,14 @@ public class BookRepositoryImpl{
 		return books;
 		
 	}
-	
+	public Page<Book> ListFiveBookByPrice(Pageable page){
+		
+		return bookRepository.findAll(page);
+		
+		
+		
+		
+	}
 
 
 }
