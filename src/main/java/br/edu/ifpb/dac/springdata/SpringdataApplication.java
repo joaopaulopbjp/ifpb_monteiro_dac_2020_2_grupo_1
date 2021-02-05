@@ -8,12 +8,14 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.domain.Page;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
+import br.edu.ifpb.dac.springdata.model.User;
+import br.edu.ifpb.dac.springdata.repository.UserRepository;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
 import br.edu.ifpb.dac.springdata.service.BookService;
+import br.edu.ifpb.dac.springdata.service.UserService;
 
 @SpringBootApplication
 public class SpringdataApplication implements CommandLineRunner {
@@ -22,9 +24,12 @@ public class SpringdataApplication implements CommandLineRunner {
 	
 	private final AuthorService authorService;
 	
-	public SpringdataApplication(BookService bookRepositoryImpl,AuthorService authorRepositoryImpl) {
+	private final UserService userService;
+	
+	public SpringdataApplication(BookService bookRepositoryImpl,AuthorService authorRepositoryImpl,UserService userService) {
 		this.bookService = bookRepositoryImpl;
 		this.authorService = authorRepositoryImpl;
+		this.userService = userService;
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -36,7 +41,7 @@ public class SpringdataApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		
-		//Pre Cadastro Autores
+		//PRE CADASTRO DE AUTORES
 		Author author01 = new Author();
 		author01.setName("Bernard Cornwell");
 		authorService.save(author01);
@@ -49,7 +54,7 @@ public class SpringdataApplication implements CommandLineRunner {
 		author03.setName("J. K. Rowling");
 		authorService.save(author03);
 		
-		//Pre Cadastro Livros
+		//PRE CADASTRO DE LIVROS
 		Book book01 = new Book();
 		book01.setTitle("As Crônicas de Nárnia");
 		book01.setPrice(40.50f);
@@ -99,7 +104,14 @@ public class SpringdataApplication implements CommandLineRunner {
 		//APLICAÇÃO PARA TESTAR FUNCIONALIDADES DO SPRINGDATA
 		while(con) {
 			
-			System.out.println("1 - Cadastrar livro\n2 - Cadastrar author\n3 - Editar livro\n4 - Excluir Livro\n5 - Exibir Livros\n");
+			System.out.println("1 - Cadastrar livro"
+					+ "\n2 - Cadastrar author"
+					+ "\n3 - Editar livro"
+					+ "\n4 - Excluir Livro"
+					+ "\n5 - Exibir Livros"
+					+ "\n6 - Cadastrar Usuario"
+					+ "\n7 - Editar Autor"
+					+ "\n");
 			int chosenOption = Integer.parseInt(input.nextLine());
 			
 			if(chosenOption == 1) {
@@ -252,7 +264,26 @@ public class SpringdataApplication implements CommandLineRunner {
 			}
 			else if(chosenOption == 6) {
 				
+				//MODO PARA CADASTRAR USUARIO
 				
+				System.out.println("Nome do usuario: ");
+				String name = input.nextLine();
+				
+				System.out.println("E-mail: ");
+				String email = input.nextLine();
+				
+				User newUser = new User();
+				
+				newUser.setName(name);
+				newUser.setEmail(email);
+				
+				userService.save(newUser);
+				
+				System.out.println("Cadastrado com secesso!");
+			}
+			else if(chosenOption == 7) {
+				
+		
 				
 			}
 			
