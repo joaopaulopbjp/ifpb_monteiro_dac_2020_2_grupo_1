@@ -1,9 +1,14 @@
 package br.edu.ifpb.dac.springdata.model;
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
+import java.io.Serializable;
 import java.util.List;
 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +18,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_Author")
-public class Author {
+public class Author implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
+	@Column(name = "NOMES")
+	private String name;
+	
+	@ManyToMany(mappedBy = "authors", cascade = CascadeType.MERGE)
+	private List<Book> books;
 
 	public String getName() {
 		return name;
@@ -61,14 +81,6 @@ public class Author {
 		this.id = id;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
 	
-	private String name;
-	
-
-	@ManyToMany(mappedBy = "authors", cascade = CascadeType.MERGE)
-	private List<Book> books;
 	
 }

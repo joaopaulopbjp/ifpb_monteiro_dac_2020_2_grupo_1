@@ -1,7 +1,11 @@
 package br.edu.ifpb.dac.springdata.model;
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +19,22 @@ import javax.persistence.Table;
 @Table(name = "TB_Book")
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
+	@Column(name = "title", nullable = false)
+	private String title;
+	@Column(name = "price")
+	private double price;
+	@Column(name = "Description")
+	private String description;
+	@Column(name = "isbn")
+	private String isbn;
+	@Column(name = "nbOfPage")
+	private Integer nbOfPage;
+	@Column(name = "illustrations")
+	private Boolean illustrations;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -37,21 +57,7 @@ public class Book {
 		return true;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
 	
-	private String title;
-	
-	private double price;
-	
-	private String description;
-	
-	private String isbn;
-	
-	private Integer nbOfPage;
-	
-	private Boolean illustrations;
 	
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
@@ -126,6 +132,10 @@ public class Book {
 		this.illustrations = illustrations;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Livro [Livro=" + titulo + ", paginas =" + qtd_pg + ", preço=" + preco + "]";
+//	}
 
 	
 	

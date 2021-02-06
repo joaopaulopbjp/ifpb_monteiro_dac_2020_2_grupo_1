@@ -1,5 +1,9 @@
 package br.edu.ifpb.dac.springdata.model;
-
+import javax.persistence.Column;
+/**
+ *  classe livros 
+ * @author: Gabriel Oliveira
+ */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +17,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+	@Column(name = "Nome")
 	private String name;
 	
 	@Override
