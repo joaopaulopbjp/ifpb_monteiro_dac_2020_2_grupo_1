@@ -23,6 +23,14 @@ public class User {
 	@Column(name = "E-mail")
 	private String email;
 	
+	//verificar Size
+	@Column(name = "E-mail")
+    private String username;
+
+   
+    //@Size(min = 2, max = 100)
+    private String password;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
