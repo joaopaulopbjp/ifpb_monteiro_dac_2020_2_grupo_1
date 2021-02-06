@@ -20,6 +20,8 @@ public class User {
 	private Long id;
 	@Column(name = "Nome")
 	private String name;
+	@Column(name = "E-mail")
+	private String email;
 	
 	@Override
 	public int hashCode() {
@@ -70,6 +72,6 @@ public class User {
 		this.email = email;
 	}
 
-	private String email;
+
 	
 }
