@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.repository.UserRepository;
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Service
 public class UserService {
 

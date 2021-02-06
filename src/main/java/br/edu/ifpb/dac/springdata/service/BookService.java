@@ -14,7 +14,10 @@ import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
 import br.edu.ifpb.dac.springdata.repository.BookRepository;
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Controller
 public class BookService{
 

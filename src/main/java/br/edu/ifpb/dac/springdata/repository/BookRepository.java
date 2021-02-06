@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.ifpb.dac.springdata.model.Book;
 
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
  

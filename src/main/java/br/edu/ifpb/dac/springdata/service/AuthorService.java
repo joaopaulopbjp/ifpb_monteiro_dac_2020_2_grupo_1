@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
-
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Service
 public class AuthorService {
 	

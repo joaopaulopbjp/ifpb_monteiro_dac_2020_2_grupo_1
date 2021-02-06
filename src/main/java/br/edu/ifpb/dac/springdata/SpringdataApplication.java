@@ -16,7 +16,10 @@ import br.edu.ifpb.dac.springdata.repository.UserRepository;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
 import br.edu.ifpb.dac.springdata.service.BookService;
 import br.edu.ifpb.dac.springdata.service.UserService;
-
+/**
+ * Classe main de execução 
+ * @author: Gabriel Oliveira && Alisson
+ */
 @SpringBootApplication
 public class SpringdataApplication implements CommandLineRunner {
 

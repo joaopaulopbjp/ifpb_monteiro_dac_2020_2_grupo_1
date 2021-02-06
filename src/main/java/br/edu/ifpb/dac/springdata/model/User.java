@@ -1,15 +1,16 @@
 package br.edu.ifpb.dac.springdata.model;
 import javax.persistence.Column;
-/**
- *  classe livros 
- * @author: Gabriel Oliveira
- */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+/**
+ *  classe de usuarios 
+ * @author: Gabriel Oliveira
+ */
 @Entity
 @Table(name = "tb_user")
 public class User {

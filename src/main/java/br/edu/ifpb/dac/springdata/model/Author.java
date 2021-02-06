@@ -1,8 +1,5 @@
 package br.edu.ifpb.dac.springdata.model;
-/**
- * 
- * @author: Gabriel Oliveira && Alisson
- */
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,6 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+/**
+ * 
+ * @author: Gabriel Oliveira && Alisson
+ */
 
 @Entity
 @Table(name = "TB_Author")
