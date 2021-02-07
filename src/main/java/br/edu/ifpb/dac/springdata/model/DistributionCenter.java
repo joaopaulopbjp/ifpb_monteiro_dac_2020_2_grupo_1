@@ -20,6 +20,11 @@ public class DistributionCenter {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	
+	//private List<Shelf> shelfs;
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,7 +50,7 @@ public class DistributionCenter {
 		return true;
 	}
 
-	private List<Shelf> shelfs;
+	
 
 	public Long getId() {
 		return id;
@@ -55,13 +60,13 @@ public class DistributionCenter {
 		this.id = id;
 	}
 
-	@JoinColumn(name = "id")
-	public List<Shelf> getShelfs() {
-		return shelfs;
-	}
+//	@JoinColumn(name = "id")
+//	public List<Shelf> getShelfs() {
+	//	return shelfs;
+//	}
 
-	public void setShelfs(List<Shelf> shelfs) {
-		this.shelfs = shelfs;
-	}
+//	public void setShelfs(List<Shelf> shelfs) {
+	//	this.shelfs = shelfs;
+	//}
 	
 }

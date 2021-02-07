@@ -17,6 +17,10 @@ public class UserController {
 		return userService.save(newUser);
 	}
 
-	
+	public User FindByEmail(String email) {
+		
+		
+		return userService.findByEmail(email);
+	}
 	
 }

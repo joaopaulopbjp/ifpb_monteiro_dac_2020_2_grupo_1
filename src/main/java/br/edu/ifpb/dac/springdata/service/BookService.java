@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
@@ -18,7 +19,7 @@ import br.edu.ifpb.dac.springdata.repository.BookRepository;
  * 
  * @author: Gabriel Oliveira && Alisson
  */
-@Controller
+@Service
 public class BookService{
 
 	@Autowired

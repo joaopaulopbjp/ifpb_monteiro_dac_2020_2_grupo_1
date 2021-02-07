@@ -2,9 +2,6 @@ package br.edu.ifpb.dac.springdata.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
-import org.hibernate.annotations.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;

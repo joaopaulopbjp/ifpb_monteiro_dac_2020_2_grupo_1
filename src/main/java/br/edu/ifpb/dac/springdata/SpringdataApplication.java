@@ -7,6 +7,7 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
@@ -20,6 +21,7 @@ import br.edu.ifpb.dac.springdata.model.User;
  * @author: Gabriel Oliveira && Alisson
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"br.edu.ifpb.dac.springdata"})
 public class SpringdataApplication implements CommandLineRunner {
 
 	private final BookController bookController;
@@ -267,10 +269,18 @@ public class SpringdataApplication implements CommandLineRunner {
 				System.out.println("E-mail: ");
 				String email = input.nextLine();
 				
+				System.out.println("Senha: ");
+				String password = input.nextLine();
+				
+				System.out.println("UserName: ");
+				String userName = input.nextLine();
+				
 				User newUser = new User();
 				
 				newUser.setName(name);
 				newUser.setEmail(email);
+				newUser.setUserName(userName);
+				newUser.setPassword(password);
 				
 				userController.save(newUser);
 				
@@ -278,7 +288,13 @@ public class SpringdataApplication implements CommandLineRunner {
 			}
 			else if(chosenOption == 7) {
 				
+				System.out.println("Email: ");
+				String email = input.nextLine();
+				
+				User user = userController.FindByEmail(email);
 		
+				System.out.println("Username do Usuario: " + user.getName());
+				
 				
 			}
 			

@@ -18,19 +18,38 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	
 	@Column(name = "Nome")
 	private String name;
-	@Column(name = "E-mail")
+	
+	//@Column(name = "E-mail")
 	private String email;
 	
 	//verificar Size
 	@Column(name = "E-mail")
-    private String username;
+    private String userName;
 
    
     //@Size(min = 2, max = 100)
     private String password;
 	
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

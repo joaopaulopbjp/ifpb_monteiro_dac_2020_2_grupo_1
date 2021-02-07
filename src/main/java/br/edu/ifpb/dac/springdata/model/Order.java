@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.springdata.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,14 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
+@Table(name = "order_tb")
 public class Order {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "order_id")
 	private Long id;
 	
 	public Long getId() {
@@ -29,10 +33,19 @@ public class Order {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
+	//public User getUser() {
+	//	return user;
+	//}
 
+
+	//@OneToMany
+	//private User user;
+	
+	//@ManyToMany(fetch= FetchType.EAGER, cascade = {CascadeType.MERGE})
+	//@JoinTable(name="oder_book",joinColumns = @JoinColumn(name="id"),inverseJoinColumns = @JoinColumn(name="id"))
+	//private List<Book> books;
+	
+	private double totalValue;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,17 +71,17 @@ public class Order {
 		return true;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	//public void setUser(User user) {
+		//this.user = user;
+	//}
 
-	public List<Book> getBooks() {
-		return books;
-	}
+	//public List<Book> getBooks() {
+		//return books;
+	//}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
+	//public void setBooks(List<Book> books) {
+	//	this.books = books;
+//	}
 
 	public double getTotalValue() {
 		return totalValue;
@@ -78,12 +91,5 @@ public class Order {
 		this.totalValue = totalValue;
 	}
 
-	@OneToMany
-	private User user;
-	
-	@ManyToMany(fetch= FetchType.EAGER, cascade = {CascadeType.MERGE})
-	@JoinTable(name="pedidolivro",joinColumns = @JoinColumn(name="id"),inverseJoinColumns = @JoinColumn(name="id"))
-	private List<Book> books;
-	
-	private double totalValue;
+
 }
