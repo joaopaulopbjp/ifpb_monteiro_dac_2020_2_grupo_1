@@ -2,20 +2,19 @@ package br.edu.ifpb.dac.springdata;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.edu.ifpb.dac.springdata.controller.AuthorController;
+import br.edu.ifpb.dac.springdata.controller.BookController;
+import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.User;
-import br.edu.ifpb.dac.springdata.repository.UserRepository;
-import br.edu.ifpb.dac.springdata.service.AuthorService;
-import br.edu.ifpb.dac.springdata.service.BookService;
-import br.edu.ifpb.dac.springdata.service.UserService;
+
 /**
  * Classe main de execução 
  * @author: Gabriel Oliveira && Alisson
@@ -23,16 +22,16 @@ import br.edu.ifpb.dac.springdata.service.UserService;
 @SpringBootApplication
 public class SpringdataApplication implements CommandLineRunner {
 
-	private final BookService bookService;
+	private final BookController bookController;
 	
-	private final AuthorService authorService;
+	private final AuthorController authorController;
 	
-	private final UserService userService;
+	private final UserController userController;
 	
-	public SpringdataApplication(BookService bookRepositoryImpl,AuthorService authorRepositoryImpl,UserService userService) {
-		this.bookService = bookRepositoryImpl;
-		this.authorService = authorRepositoryImpl;
-		this.userService = userService;
+	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController) {
+		this.bookController = bookController;
+		this.authorController = authorController;
+		this.userController = userController;
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -47,15 +46,15 @@ public class SpringdataApplication implements CommandLineRunner {
 		//PRE CADASTRO DE AUTORES
 		Author author01 = new Author();
 		author01.setName("Bernard Cornwell");
-		authorService.save(author01);
+		authorController.save(author01);
 		
 		Author author02 = new Author();
 		author02.setName("C.S. Lewis");
-		authorService.save(author02);
+		authorController.save(author02);
 		
 		Author author03 = new Author();
 		author03.setName("J. K. Rowling");
-		authorService.save(author03);
+		authorController.save(author03);
 		
 		//PRE CADASTRO DE LIVROS
 		Book book01 = new Book();
@@ -65,8 +64,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book01.setIllustrations(true);
 		book01.setIsbn("978-8578270698");
 		book01.setNbOfPage(752);
-		bookService.saveAuthor(2l, book01);
-		bookService.save(book01);
+		bookController.saveAuthor(2l, book01);
+		bookController.save(book01);
 		System.out.println(book01.getAuthors().get(0).getName());
 		
 		
@@ -77,8 +76,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book02.setIllustrations(false);
 		book02.setIsbn("978-8501061140");
 		book02.setNbOfPage(546);
-		bookService.saveAuthor(1l, book02);
-		bookService.save(book02);
+		bookController.saveAuthor(1l, book02);
+		bookController.save(book02);
 		
 		Book book03 = new Book();
 		book03.setTitle("O inimigo de Deus (Vol. 2 As Crônicas de Artur)");
@@ -87,8 +86,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book03.setIllustrations(false);
 		book03.setIsbn("978-8501061188");
 		book03.setNbOfPage(518);
-		bookService.saveAuthor(1l, book03);
-		bookService.save(book03);
+		bookController.saveAuthor(1l, book03);
+		bookController.save(book03);
 		
 		Book book04 = new Book();
 		book04.setTitle("Harry Potter e a pedra filosofal");
@@ -97,8 +96,8 @@ public class SpringdataApplication implements CommandLineRunner {
 		book04.setIllustrations(false);
 		book04.setIsbn("978-8532531766");
 		book04.setNbOfPage(256);
-		bookService.saveAuthor(2l, book04);
-		bookService.save(book04);
+		bookController.saveAuthor(2l, book04);
+		bookController.save(book04);
 		
 		
 		boolean con = true;
@@ -142,14 +141,10 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 				Book newBook = new Book();					
 				ArrayList<Long> authorsId = new ArrayList();
+				
 				while(true) {
 					
-					try {
-					//List<Author> authors = authorRepositoryImpl.findAll();
-					
-					//for(int i = 0; i < authors.size();i++) {
-						//System.out.println(authors.get(i).getId() + " - " + authors.get(i).getName());							
-					//}
+					try {	
 					System.out.println("Id do Author: ");
 					authorsId.add(Long.parseLong(input.nextLine()));
 					
@@ -158,12 +153,9 @@ public class SpringdataApplication implements CommandLineRunner {
 					
 					if(AuthorOp .equalsIgnoreCase("S")) {
 						
-						for(int x = 0; x < authorsId.size();x++ ) {
-							bookService.saveAuthor(authorsId.get(x), newBook);
-						}
 					}
 					else {					
-						
+						bookController.saveAuthor(authorsId.get(1), newBook);
 						break;
 					}					
 					}catch (Exception e) {
@@ -180,7 +172,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				newBook.setIllustrations(illustrations);
 				newBook.setIsbn(isbn);
 				newBook.setNbOfPage(NbOfPages);
-				bookService.save(newBook);
+				bookController.save(newBook);
 				
 				System.out.println("Livro Cadastrado Com Sucesso!!");
 				
@@ -194,14 +186,14 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 				newAuthor.setName(name);
 				
-				authorService.save(newAuthor);
+				authorController.save(newAuthor);
 				System.out.println("Author Salvo com Sucesso!!");
 				
 			}
 			else if(chosenOption == 3) {
 				
 				System.out.println("Id do livro a ser editado: ");
-				Book updateBook = bookService.findById(Long.parseLong(input.nextLine()));
+				Book updateBook = bookController.findById(Long.parseLong(input.nextLine()));
 				
 				System.out.println("Atual: " + updateBook.getTitle());
 				System.out.println("Novo Title: ");
@@ -239,7 +231,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				updateBook.setIsbn(isbn);
 				updateBook.setNbOfPage(NbOfPages);
 				
-				bookService.save(updateBook);
+				bookController.save(updateBook);
 			}
 			else if(chosenOption == 4){
 				//OPÇÃO PARA DELETAR UM LIVRO
@@ -247,23 +239,23 @@ public class SpringdataApplication implements CommandLineRunner {
 				System.out.println("ID do livro a ser deletado: ");
 				Long bookIdDelete = Long.parseLong(input.nextLine());
 				
-				bookService.deleteById(bookIdDelete);
+				bookController.deleteById(bookIdDelete);
 				System.out.println("Livro Deletado");
 				
 			}
 			else if(chosenOption == 5) {
 				//MODO DE EXIBIÇÃO DOS LIVROS POR PAGINA
 				
-				System.out.println("Escolha a pagina de 0 a : " + (bookService.countPage() - 1));
-				int pagOp = Integer.parseInt(input.nextLine());
+				//System.out.println("Escolha a pagina de 0 a : " + (bookService.countPage() - 1));
+				//int pagOp = Integer.parseInt(input.nextLine());
 
-				List<Book> books = bookService.showBook(bookService.findAll(pagOp, 3));
+				//List<Book> books = bookController.showBook(bookService.findAll(pagOp, 3));
 				
-				for(int i = 0; i < books.size();i++) {
+				//for(int i = 0; i < books.size();i++) {
 									
-					System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
+					//System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
 								
-				}
+				//}
 			}
 			else if(chosenOption == 6) {
 				
@@ -280,7 +272,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				newUser.setName(name);
 				newUser.setEmail(email);
 				
-				userService.save(newUser);
+				userController.save(newUser);
 				
 				System.out.println("Cadastrado com secesso!");
 			}
