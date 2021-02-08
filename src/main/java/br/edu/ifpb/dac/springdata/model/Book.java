@@ -22,13 +22,13 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", length = 50, nullable = false)
 	private String title;
 	@Column(name = "price")
 	private double price;
 	@Column(name = "Description")
 	private String description;
-	@Column(name = "isbn")
+	@Column(name = "isbn",length = 50, nullable = false)
 	private String isbn;
 	@Column(name = "nbOfPage")
 	private Integer nbOfPage;

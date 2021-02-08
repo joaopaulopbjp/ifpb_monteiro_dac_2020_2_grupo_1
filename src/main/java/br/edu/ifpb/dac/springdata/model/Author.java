@@ -31,7 +31,7 @@ public class Author implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	@Column(name = "name")
+	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 	
 	@ManyToMany(mappedBy = "authors", cascade = CascadeType.MERGE)
