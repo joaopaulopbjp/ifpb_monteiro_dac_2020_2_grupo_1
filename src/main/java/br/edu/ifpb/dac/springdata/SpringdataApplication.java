@@ -11,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
+import br.edu.ifpb.dac.springdata.controller.DistributionCenterController;
+import br.edu.ifpb.dac.springdata.controller.ShelfController;
 import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
@@ -30,10 +32,16 @@ public class SpringdataApplication implements CommandLineRunner {
 	
 	private final UserController userController;
 	
-	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController) {
+	private final ShelfController shelfController;
+	
+	private final DistributionCenterController distributionCenterController;
+	
+	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,ShelfController shelfController,DistributionCenterController distributionCenterController) {
 		this.bookController = bookController;
 		this.authorController = authorController;
 		this.userController = userController;
+		this.shelfController = shelfController;
+		this.distributionCenterController = distributionCenterController;
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -109,13 +117,17 @@ public class SpringdataApplication implements CommandLineRunner {
 		while(con) {
 			
 			System.out.println("1 - Cadastrar livro"
-					+ "\n2 - Cadastrar author"
+					+ "\n2 - Exibir Livros"
 					+ "\n3 - Editar livro"
 					+ "\n4 - Excluir Livro"
-					+ "\n5 - Exibir Livros"
+					+ "\n5 - Cadastrar Livro no Estoque"
 					+ "\n6 - Cadastrar Usuario"
-					+ "\n7 - Editar Autor"
-					+ "\n");
+					+ "\n7 - Buscar Usuario Por Email"
+					+ "\n8 - Cadastrar autor"
+					+ "\n9 - Editar autor"
+					+ "\n10 - Cadastrar Centro de distribuição"
+					+ "\n11 - Cadastrar Prateleira em um Centro de Distribuição"
+					+ "\n12 - Adicionar Livro a Pedido");
 			int chosenOption = Integer.parseInt(input.nextLine());
 			
 			if(chosenOption == 1) {
@@ -180,16 +192,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 			}
 			else if(chosenOption == 2) {
-				//OPÇÃO PARA CADASTRAR UM AUTOR
-				System.out.println("Nome do Author: ");
-				String name = input.nextLine();
-							
-				Author newAuthor = new Author();
 				
-				newAuthor.setName(name);
-				
-				authorController.save(newAuthor);
-				System.out.println("Author Salvo com Sucesso!!");
 				
 			}
 			else if(chosenOption == 3) {
@@ -295,6 +298,38 @@ public class SpringdataApplication implements CommandLineRunner {
 		
 				System.out.println("Username do Usuario: " + user.getName());
 				
+				
+			}else if(chosenOption == 8) {
+				
+				//OPÇÃO PARA CADASTRAR UM AUTOR
+				System.out.println("Nome do Author: ");
+				String name = input.nextLine();
+							
+				Author newAuthor = new Author();
+				
+				newAuthor.setName(name);
+				
+				authorController.save(newAuthor);
+				System.out.println("Author Salvo com Sucesso!!");
+			}
+			else if(chosenOption == 9) {
+				
+				
+				
+				
+				
+			}else if(chosenOption == 10) {
+				
+				
+				
+				
+				
+			}else if(chosenOption == 11) {
+				
+				
+				
+				
+			}else if(chosenOption == 12) {
 				
 			}
 			

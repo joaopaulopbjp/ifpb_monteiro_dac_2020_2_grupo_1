@@ -2,11 +2,14 @@ package br.edu.ifpb.dac.springdata.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  * 
@@ -20,8 +23,9 @@ public class DistributionCenter {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	
-	//private List<Shelf> shelfs;
+	@OneToMany(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "shelfs_CD")
+	private List<Shelf> shelfs;
 	
 	
 	
@@ -60,13 +64,13 @@ public class DistributionCenter {
 		this.id = id;
 	}
 
-//	@JoinColumn(name = "id")
-//	public List<Shelf> getShelfs() {
-	//	return shelfs;
-//	}
+	@JoinColumn(name = "id")
+	public List<Shelf> getShelfs() {
+		return shelfs;
+	}
 
-//	public void setShelfs(List<Shelf> shelfs) {
-	//	this.shelfs = shelfs;
-	//}
+	public void setShelfs(List<Shelf> shelfs) {
+		this.shelfs = shelfs;
+	}
 	
 }

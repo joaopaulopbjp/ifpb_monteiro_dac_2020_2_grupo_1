@@ -1,15 +1,41 @@
 package br.edu.ifpb.dac.springdata.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+
+@Entity
 public class Shelf {
 
 	@Id
+	@Column(name = "shelf_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	
+	@ManyToOne
+	private DistributionCenter distributionCenter;
+	
+	
+	public DistributionCenter getDistributionCenter() {
+		return distributionCenter;
+	}
 
+
+	public void setDistributionCenter(DistributionCenter distributionCenter) {
+		this.distributionCenter = distributionCenter;
+	}
+
+
+	public Shelf() {
+		
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
