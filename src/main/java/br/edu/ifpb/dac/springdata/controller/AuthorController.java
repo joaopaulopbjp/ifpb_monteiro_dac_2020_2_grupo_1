@@ -19,4 +19,18 @@ public class AuthorController {
 		return authorService.save(author);
 	}
 	
+	/**
+	 * **************NOTA**************
+	 * metodo para deletar
+	 * Colocado a anotação ROLES_ALLOWED para deletar precisa do papel de administrador.
+	 * @param id
+	 * @return
+	 */
+	public void delet(long id) {
+		
+		authorService.delet(id);
+	}
+
+	
+
 }

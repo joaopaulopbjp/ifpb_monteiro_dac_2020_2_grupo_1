@@ -7,13 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
+
+
+/**
+ * Classe contendo informaçoes de usuario
+ * @author: Gabriel Oliveira && Alisson
+ */
+
 /**
  *  classe de usuarios 
  * @author: Gabriel Oliveira
  */
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class User  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,15 +29,16 @@ public class User {
 	@Column(name = "Nome")
 	private String name;
 	
-	//@Column(name = "E-mail")
+	@Column(name = "E-mail")
 	private String email;
 	
 	//verificar Size
-	@Column(name = "E-mail")
+	@Column(name = "username")
     private String userName;
 
    
     //@Size(min = 2, max = 100)
+	@Column(name = "password")
     private String password;
 	
 	

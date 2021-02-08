@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * 
+ * Classe contendo informaçoes do autor
  * @author: Gabriel Oliveira && Alisson
  */
 

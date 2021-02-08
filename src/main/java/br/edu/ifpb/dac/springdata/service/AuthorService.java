@@ -29,5 +29,10 @@ public class AuthorService {
 		
 		return (List<Author>) authorRepository.findAll();
 	}
+	//DELETA AUTor
+	public void delet(long id) {
+		
+		authorRepository.deleteById(id);
+	}
 	
 }

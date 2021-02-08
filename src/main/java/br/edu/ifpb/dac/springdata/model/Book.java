@@ -1,6 +1,6 @@
 package br.edu.ifpb.dac.springdata.model;
 /**
- * 
+ * Classe contendo informaçoes do livro
  * @author: Gabriel Oliveira && Alisson
  */
 import java.util.List;

@@ -1,5 +1,10 @@
 package br.edu.ifpb.dac.springdata.model;
 
+/**
+ * Ordem
+ * @author: Gabriel Oliveira && Alisson
+ */
+
 import java.util.List;
 
 import javax.persistence.CascadeType;

@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 /**
- * 
+ * Classe contendo informaçoes do centro de distribuição
  * @author: Gabriel Oliveira && Alisson
  */
 

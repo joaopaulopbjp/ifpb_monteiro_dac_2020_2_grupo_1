@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.Author;
@@ -103,14 +102,15 @@ public class BookService{
 		return books;
 		
 	}
+	
+    //	METODO PARA CONSULTAR OS 5 LIVROS MAIS BARATOS;
 	public Page<Book> ListFiveBookByPrice(Pageable page){
 		
 		return bookRepository.findAll(page);
-		
-		
-		
-		
+			
 	}
+	
+
 
 
 }
