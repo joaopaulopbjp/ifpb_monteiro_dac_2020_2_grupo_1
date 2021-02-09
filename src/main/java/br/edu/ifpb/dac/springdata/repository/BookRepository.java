@@ -16,6 +16,6 @@ import br.edu.ifpb.dac.springdata.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
 	 
-	public Book findBookByTitulo(String titulo);
+	//public Book findBookByTitulo(String titulo);
 	
 }

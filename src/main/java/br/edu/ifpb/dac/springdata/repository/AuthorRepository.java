@@ -17,7 +17,7 @@ import br.edu.ifpb.dac.springdata.model.Author;
 public interface AuthorRepository extends CrudRepository<Author, Long>{
 	
 	//busca autor
-	public List<Author> findByNomeContainingIgnoreCase (String name);
+	//public List<Author> findByNomeContainingIgnoreCase (String name);
    
 	//teste verica os autores sem livros
 	//@Query("select id from TB_Author a where a.books is empty and a.id=:id")

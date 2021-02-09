@@ -11,8 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
-import br.edu.ifpb.dac.springdata.controller.DistributionCenterController;
-import br.edu.ifpb.dac.springdata.controller.ShelfController;
+import br.edu.ifpb.dac.springdata.controller.StockController;
 import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
@@ -32,16 +31,16 @@ public class SpringdataApplication implements CommandLineRunner {
 	
 	private final UserController userController;
 	
-	private final ShelfController shelfController;
+	private final StockController stockController;
 	
-	private final DistributionCenterController distributionCenterController;
 	
-	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,ShelfController shelfController,DistributionCenterController distributionCenterController) {
+	
+	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,StockController stockController) {
 		this.bookController = bookController;
 		this.authorController = authorController;
 		this.userController = userController;
-		this.shelfController = shelfController;
-		this.distributionCenterController = distributionCenterController;
+		this.stockController = stockController;
+		
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
