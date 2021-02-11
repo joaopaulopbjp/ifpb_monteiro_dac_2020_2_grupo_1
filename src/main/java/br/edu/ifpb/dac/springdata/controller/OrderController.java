@@ -16,10 +16,12 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	public Order saveBook(Order Order,Long idBook) {
+	public Order saveBook(Order Order) {
 		
 	
 		return orderService.save(Order);
 	}
+	
+	
 	
 }

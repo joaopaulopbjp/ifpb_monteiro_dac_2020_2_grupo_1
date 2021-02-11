@@ -15,6 +15,7 @@ import br.edu.ifpb.dac.springdata.controller.StockController;
 import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
+import br.edu.ifpb.dac.springdata.model.Order;
 import br.edu.ifpb.dac.springdata.model.User;
 
 /**
@@ -40,6 +41,7 @@ public class SpringdataApplication implements CommandLineRunner {
 		this.authorController = authorController;
 		this.userController = userController;
 		this.stockController = stockController;
+		
 		
 	}
 	
@@ -116,7 +118,7 @@ public class SpringdataApplication implements CommandLineRunner {
 		while(con) {
 			
 			System.out.println("1 - Cadastrar livro"
-					+ "\n2 - Exibir Livros"
+					+ "\n2 - Consultar todos os livros"
 					+ "\n3 - Editar livro"
 					+ "\n4 - Excluir Livro"
 					+ "\n5 - Cadastrar Livro no Estoque"
@@ -124,9 +126,9 @@ public class SpringdataApplication implements CommandLineRunner {
 					+ "\n7 - Buscar Usuario Por Email"
 					+ "\n8 - Cadastrar autor"
 					+ "\n9 - Editar autor"
-					+ "\n10 - Cadastrar Centro de distribuição"
-					+ "\n11 - Cadastrar Prateleira em um Centro de Distribuição"
-					+ "\n12 - Adicionar Livro a Pedido");
+					+ "\n10 - Consultar os 5 livros mais baratos disponíveis no estoque"
+					+ "\n11 - Adicionar um livro a um pedido"
+					);
 			int chosenOption = Integer.parseInt(input.nextLine());
 			
 			if(chosenOption == 1) {
@@ -290,6 +292,7 @@ public class SpringdataApplication implements CommandLineRunner {
 			}
 			else if(chosenOption == 7) {
 				
+				//BUSCAR USUARIO POR EMAIL E EXIBIR SEU NOME
 				System.out.println("Email: ");
 				String email = input.nextLine();
 				
@@ -313,25 +316,31 @@ public class SpringdataApplication implements CommandLineRunner {
 			}
 			else if(chosenOption == 9) {
 				
+				//OPÇÃO PARA EDITAR UM AUTOR
+				System.out.println("Id do author a ser editado: ");
+				Long id = Long.parseLong(input.nextLine());
 				
+				Author author = authorController.findAuthorById(id);
 				
+				System.out.println("Nome do Autor atual: " + author.getName());
 				
+				System.out.println("Novo nome do Autor: ");
+				String newNome = input.nextLine();
+				
+				author.setName(newNome);
+				
+				authorController.save(author);
 				
 			}else if(chosenOption == 10) {
 				
-				
-				
-				
-				
+
 			}else if(chosenOption == 11) {
 				
+				System.out.println("Id do livro: ");
+				Long id = Long.parseLong(input.nextLine());
+
 				
-				
-				
-			}else if(chosenOption == 12) {
-				
-			}
-			
+			}	
 		}
 	}
 

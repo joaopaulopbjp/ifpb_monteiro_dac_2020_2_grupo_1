@@ -19,6 +19,11 @@ public class AuthorController {
 		return authorService.save(author);
 	}
 	
+	public Author findAuthorById(Long id) {
+		
+		return authorService.findAuthorById(id);
+	}
+	
 	/**
 	 * **************NOTA**************
 	 * metodo para deletar
