@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.domain.Page;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
@@ -193,7 +194,13 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 			}
 			else if(chosenOption == 2) {
+				Page<Book> page = bookController.listaTodosBooks();
 				
+				for (Book b : page) {
+					System.out.println("id:"+b.getId()+ "  - title: "+b.getTitle()
+							+ "\n------------------------------------------------------------------");
+
+				}
 				
 			}
 			else if(chosenOption == 3) {
