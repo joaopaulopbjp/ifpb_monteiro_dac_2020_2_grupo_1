@@ -134,6 +134,7 @@ public class SpringdataApplication implements CommandLineRunner {
 			
 			if(chosenOption == 1) {
 				
+				
 				//MODO CADASTRAR LIVRO
 				
 				System.out.println("Title: ");
