@@ -41,10 +41,10 @@ public class BookController {
 		bookService.deleteById(bookIdDelete);
 		
 	}
-	
+	//consulta feita de forma asc
 	public Page<Book> listaTodosBooks(){
 		
-		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 3, Sort.by(Sort.Direction.ASC, "price")));
+		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 5, Sort.by(Sort.Direction.ASC, "price")));
 		
 	}
 	

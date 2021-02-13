@@ -104,6 +104,7 @@ public class BookService{
 	}
 	
     //	METODO PARA CONSULTAR OS 5 LIVROS MAIS BARATOS;
+	// TAmbem serve para qualquer tipo de consulta relacionado a livros
 	public Page<Book> ListFiveBookByPrice(Pageable page){
 		
 		return bookRepository.findAll(page);
