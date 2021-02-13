@@ -44,6 +44,7 @@ public class Author implements Serializable  {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 	public List<Book> getBooks() {
 		return books;
