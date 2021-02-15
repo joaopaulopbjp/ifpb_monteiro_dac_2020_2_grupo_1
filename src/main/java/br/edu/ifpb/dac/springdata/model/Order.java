@@ -1,20 +1,25 @@
 package br.edu.ifpb.dac.springdata.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+
 /**
  * Ordem
  * @author: Gabriel Oliveira && Alisson
  */
 
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -36,17 +41,16 @@ public class Order {
 		this.id = id;
 	}
 
-	//public User getUser() {
-	//	return user;
-	//}
+	public User getUser() {
+		return user;
+	}
 
-
-	//@OneToMany
-	//private User user;
+	@OneToOne
+	private User user;
 	
-	//@ManyToMany(fetch= FetchType.EAGER, cascade = {CascadeType.MERGE})
-	//@JoinTable(name="oder_book",joinColumns = @JoinColumn(name="id"),inverseJoinColumns = @JoinColumn(name="id"))
-	//private List<Book> books;
+	@OneToMany(cascade = CascadeType.MERGE)
+	//@JoinColumn(name = "book_order")
+	private List<Book> books;
 	
 	private double totalValue;
 	@Override
@@ -74,17 +78,17 @@ public class Order {
 		return true;
 	}
 
-	//public void setUser(User user) {
-		//this.user = user;
-	//}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-	//public List<Book> getBooks() {
-		//return books;
-	//}
+	public List<Book> getBooks() {
+		return books;
+	}
 
-	//public void setBooks(List<Book> books) {
-	//	this.books = books;
-//	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 	public double getTotalValue() {
 		return totalValue;

@@ -12,11 +12,13 @@ import org.springframework.data.domain.Page;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
+import br.edu.ifpb.dac.springdata.controller.OrderController;
 import br.edu.ifpb.dac.springdata.controller.StockController;
 import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.Order;
+import br.edu.ifpb.dac.springdata.model.Stock;
 import br.edu.ifpb.dac.springdata.model.User;
 
 /**
@@ -35,13 +37,16 @@ public class SpringdataApplication implements CommandLineRunner {
 	
 	private final StockController stockController;
 	
+	private final OrderController orderController;
 	
 	
-	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,StockController stockController) {
+	
+	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,StockController stockController,OrderController orderController) {
 		this.bookController = bookController;
 		this.authorController = authorController;
 		this.userController = userController;
 		this.stockController = stockController;
+		this.orderController = orderController;
 		
 		
 	}
@@ -53,6 +58,7 @@ public class SpringdataApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 		
 		
 		//PRE CADASTRO DE AUTORES
@@ -78,7 +84,6 @@ public class SpringdataApplication implements CommandLineRunner {
 		book01.setNbOfPage(752);
 		bookController.saveAuthor(2l, book01);
 		bookController.save(book01);
-		System.out.println(book01.getAuthors().get(0).getName());
 		
 		
 		Book book02 = new Book();
@@ -111,6 +116,10 @@ public class SpringdataApplication implements CommandLineRunner {
 		bookController.saveAuthor(2l, book04);
 		bookController.save(book04);
 		
+		
+		//CRIANDO ESTOQUE
+		Stock stock = new Stock();
+		stockController.save(stock);
 		
 		boolean con = true;
 		Scanner input = new Scanner(System.in);
@@ -258,18 +267,17 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 			}
 			else if(chosenOption == 5) {
-				//MODO DE EXIBIÇÃO DOS LIVROS POR PAGINA
 				
-				//System.out.println("Escolha a pagina de 0 a : " + (bookService.countPage() - 1));
-				//int pagOp = Integer.parseInt(input.nextLine());
-
-				//List<Book> books = bookController.showBook(bookService.findAll(pagOp, 3));
 				
-				//for(int i = 0; i < books.size();i++) {
-									
-					//System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
-								
-				//}
+				System.out.println("Coloque o Id do Livro a ser Cadastrado no Estoque: ");
+				Long idBook = Long.parseLong(input.nextLine());
+				
+				Book book = bookController.findById(idBook);
+				
+				stock.getBooks().add(book);
+				stockController.save(stock);
+							
+				
 			}
 			else if(chosenOption == 6) {
 				
@@ -340,12 +348,31 @@ public class SpringdataApplication implements CommandLineRunner {
 				authorController.save(author);
 				
 			}else if(chosenOption == 10) {
+
+				//MODO DE EXIBIÇÃO DOS LIVROS POR PAGINA
 				
+				//System.out.println("Escolha a pagina de 0 a : " + (bookService.countPage() - 1));
+				//int pagOp = Integer.parseInt(input.nextLine());
+
+				//List<Book> books = bookController.showBook(bookService.findAll(pagOp, 3));
+				
+				//for(int i = 0; i < books.size();i++) {
+									
+					//System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
+								
+				//}
 
 			}else if(chosenOption == 11) {
 				
 				System.out.println("Id do livro: ");
 				Long id = Long.parseLong(input.nextLine());
+				
+				Book book = bookController.findById(id);
+				
+				Order order = new Order();
+				
+				order.getBooks().add(book);
+				orderController.saveBook(order);
 
 				
 			}	

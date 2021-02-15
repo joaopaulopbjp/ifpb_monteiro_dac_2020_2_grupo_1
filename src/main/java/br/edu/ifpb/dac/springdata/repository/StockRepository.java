@@ -8,7 +8,7 @@ import br.edu.ifpb.dac.springdata.model.Stock;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long>{
 
-	
+	//Stock FindByName(String name);
 	
 	
 }
