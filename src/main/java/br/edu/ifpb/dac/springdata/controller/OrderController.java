@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import br.edu.ifpb.dac.springdata.model.Order;
 import br.edu.ifpb.dac.springdata.service.OrderService;
 
+/**
+ * camada intermediária responsavel por gerenciar Order
+ * @author: Gabriel Oliveira && Alisson
+ */
+
 @Controller
 public class OrderController {
 

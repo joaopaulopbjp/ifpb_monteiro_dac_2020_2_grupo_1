@@ -15,6 +15,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+*  classe  responsável pelas regras de negócios de Book 
+* 
+* * @author: Gabriel Oliveira && Alisson
+*/
+
 @Entity
 @Table(name = "TB_Book")
 public class Book {

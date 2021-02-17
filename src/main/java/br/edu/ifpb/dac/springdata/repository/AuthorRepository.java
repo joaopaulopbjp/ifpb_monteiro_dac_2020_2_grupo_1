@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 /**
- * 
+ * usa a camada de persistência para gravar e recuperar os dados necessários para
+ * persistir e recuperar os objetos de Author
  * @author: Gabriel Oliveira && Alisson
  */
 

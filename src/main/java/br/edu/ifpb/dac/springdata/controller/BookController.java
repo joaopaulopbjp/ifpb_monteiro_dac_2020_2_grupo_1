@@ -10,6 +10,11 @@ import br.edu.ifpb.dac.springdata.service.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+/**
+ * camada intermediária responsavel por gerenciar Book
+ * @author: Gabriel Oliveira && Alisson
+ */
+
 
 
 
@@ -44,7 +49,14 @@ public class BookController {
 	//consulta feita de forma asc
 	public Page<Book> listaTodosBooks(){
 		
-		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 5, Sort.by(Sort.Direction.ASC, "price")));
+		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 100, Sort.by(Sort.Direction.ASC, "price")));
+		
+	}
+	
+	//LISTA OS 5 MAIS BARATOS
+	public Page<Book> listaFiveprice(){
+		
+		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "price")));
 		
 	}
 	

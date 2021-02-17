@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.springdata.model.Order;
 import br.edu.ifpb.dac.springdata.repository.OrderRepository;
 
+/**
+ * responsável por se comunicar com as camadas mais internas
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Service
 public class OrderService {
 

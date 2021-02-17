@@ -22,8 +22,9 @@ import br.edu.ifpb.dac.springdata.model.Stock;
 import br.edu.ifpb.dac.springdata.model.User;
 
 /**
- * Classe main de execução 
- * @author: Gabriel Oliveira && Alisson
+ * starta a aplicação
+ * @author Arkan
+ *
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"br.edu.ifpb.dac.springdata"})
@@ -38,22 +39,17 @@ public class SpringdataApplication implements CommandLineRunner {
 	private final StockController stockController;
 	
 	private final OrderController orderController;
-	
-	
-	
-	public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,StockController stockController,OrderController orderController) {
+		public SpringdataApplication(BookController bookController,AuthorController authorController,UserController userController,StockController stockController,OrderController orderController) {
 		this.bookController = bookController;
 		this.authorController = authorController;
 		this.userController = userController;
 		this.stockController = stockController;
 		this.orderController = orderController;
-		
-		
+			
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-		SpringApplication.run(SpringdataApplication.class, args);
-		
+		SpringApplication.run(SpringdataApplication.class, args);		
 	}
 
 	@Override
@@ -208,7 +204,7 @@ public class SpringdataApplication implements CommandLineRunner {
 				
 				for (Book b : page) {
 					System.out.println("id:"+b.getId()+ "  - title: "+b.getTitle()
-							+ "\n------------------------------------------------------------------");
+							+ "\n************************************************");
 
 				}
 				
@@ -361,6 +357,16 @@ public class SpringdataApplication implements CommandLineRunner {
 					//System.out.println("Nome: " + books.get(i).getTitle() +" Preço: "+ books.get(i).getPrice());
 								
 				//}
+				Page<Book> page = bookController.listaFiveprice();
+				
+				for (Book b : page) {
+					System.out.println("id:"+b.getId()+ "  - title: "+b.getTitle()
+							+ "\n************************************************");
+
+				}
+				
+			
+				
 
 			}else if(chosenOption == 11) {
 				
@@ -375,7 +381,11 @@ public class SpringdataApplication implements CommandLineRunner {
 				orderController.saveBook(order);
 
 				
-			}	
+		}	//else if(chosenOption > 11 || chosenOption <= 0 ) {
+//				
+//				System.out.println("opção inavalida : ");
+//				
+//			}
 		}
 	}
 

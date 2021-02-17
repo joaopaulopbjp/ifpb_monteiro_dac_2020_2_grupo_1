@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import br.edu.ifpb.dac.springdata.model.User;
 
 /**
- * 
+ * usa a camada de persistência para gravar e recuperar os dados necessários para
+ * persistir e recuperar os objetos de User
  * @author: Gabriel Oliveira && Alisson
  */
 @Repository

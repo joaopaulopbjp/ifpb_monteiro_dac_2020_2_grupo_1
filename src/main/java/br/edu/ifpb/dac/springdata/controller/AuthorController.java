@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
-
+/**
+ * camada intermediária responsavel por gerenciar author
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Controller
 public class AuthorController {
 

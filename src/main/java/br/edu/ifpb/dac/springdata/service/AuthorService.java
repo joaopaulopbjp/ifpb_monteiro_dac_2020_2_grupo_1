@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
 /**
- * 
+ * responsável por se comunicar com as camadas mais internas
  * @author: Gabriel Oliveira && Alisson
  */
 @Service
@@ -35,9 +35,10 @@ public class AuthorService {
 		authorRepository.deleteById(id);
 	}
 	
+	
 	public Author findAuthorById(Long id) {
 		
-		return authorRepository.findById(id).orElseThrow();
+		return authorRepository.findById(id).orElseThrow(null);
 	}
 	
 }

@@ -22,7 +22,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
+/**
+*  classe  responsável pelas regras de negócios de Order
+* 
+* * @author: Gabriel Oliveira && Alisson
+*/
 @Entity
 @Table(name = "order_tb")
 public class Order {

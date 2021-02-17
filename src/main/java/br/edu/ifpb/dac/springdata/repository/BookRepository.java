@@ -9,7 +9,8 @@ import org.springframework.data.domain.Pageable;
 import br.edu.ifpb.dac.springdata.model.Book;
 
 /**
- * 
+ * usa a camada de persistência para gravar e recuperar os dados necessários para
+ * persistir e recuperar os objetos de Book
  * @author: Gabriel Oliveira && Alisson
  */
 @Repository

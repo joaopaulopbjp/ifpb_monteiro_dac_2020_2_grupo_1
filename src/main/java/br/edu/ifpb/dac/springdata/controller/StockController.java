@@ -8,6 +8,10 @@ import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.Stock;
 import br.edu.ifpb.dac.springdata.service.StockService;
 
+/**
+ * camada intermediária responsavel por gerenciar Stock
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Controller
 public class StockController {
 

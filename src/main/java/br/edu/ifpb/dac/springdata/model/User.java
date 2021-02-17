@@ -9,13 +9,17 @@ import javax.persistence.Table;
 
 
 
-/**
- * Classe contendo informaçoes de usuario
- * @author: Gabriel Oliveira && Alisson
+
+ /**
+ *  classe  responsável pelas regras de negócios de usuarios 
+ * 
+ * * @author: Gabriel Oliveira && Alisson
  */
+ 
+ 
 
 /**
- *  classe de usuarios 
+ *  classe  responsável pelas regras de negócios de usuarios 
  * @author: Gabriel Oliveira
  */
 @Entity

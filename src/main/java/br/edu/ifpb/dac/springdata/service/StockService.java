@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.springdata.model.Stock;
 import br.edu.ifpb.dac.springdata.repository.StockRepository;
 
+/**
+ * responsável por se comunicar com as camadas mais internas
+ * @author: Gabriel Oliveira && Alisson
+ */
 @Service
 public class StockService {
 
@@ -23,6 +27,6 @@ public class StockService {
 	
 	public Stock FindStockById(Long id) {
 		
-		return stockRepository.findById(id).orElseThrow();
+		return stockRepository.findById(id).orElseThrow(null);
 	}
 }

@@ -11,6 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+/**
+*  classe  responsável pelas regras de negócios de Stock
+* 
+* * @author: Gabriel Oliveira && Alisson
+*/
+
 @Entity
 public class Stock {
 

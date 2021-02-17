@@ -14,9 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * Classe contendo informaçoes do autor
- * @author: Gabriel Oliveira && Alisson
- */
+*  classe  responsável pelas regras de negócios de Author
+* 
+* * @author: Gabriel Oliveira && Alisson
+*/
 
 @Entity
 @Table(name = "TB_Author")

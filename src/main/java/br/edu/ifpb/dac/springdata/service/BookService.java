@@ -15,7 +15,7 @@ import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
 import br.edu.ifpb.dac.springdata.repository.BookRepository;
 /**
- * 
+ * responsável por se comunicar com as camadas mais internas
  * @author: Gabriel Oliveira && Alisson
  */
 @Service
@@ -35,7 +35,7 @@ public class BookService{
 	
 	//METODO PARA DELETAR UM LIVRO PELO ID DELE
 	public void deleteById(Long id)throws Exception{
-		Book book = bookRepository.findById(id).orElseThrow();
+		Book book = bookRepository.findById(id).orElseThrow(null);
 		
 		bookRepository.delete(book);
 	}
@@ -43,13 +43,13 @@ public class BookService{
 	//METODO PARA PEGAR UM LIVRO PELO ID DELE
 	public Book findById(long id)throws Exception{
 
-		return bookRepository.findById(id).orElseThrow();
+		return bookRepository.findById(id).orElseThrow(null);
 	} 
 	
 	//METODO PARA ATUAIZAR INFORMAÇÕES DE UM LIVRO
 	public Book update(Book book) throws Exception{
 
-		Book updateBook = bookRepository.findById(book.getId()).orElseThrow();
+		Book updateBook = bookRepository.findById(book.getId()).orElseThrow(null);
 
 		updateBook.setDescription(book.getDescription());
 		updateBook.setIllustrations(book.getIllustrations());
@@ -65,7 +65,7 @@ public class BookService{
 	//METODO SALVAR O AUTHOR DO LIVRO NA TABELA DO RELACIONAMENTO DELES
 	public void saveAuthor(Long authorId,Book book) throws Exception{
 
-		Author author = authorRepository.findById(authorId).orElseThrow();
+		Author author = authorRepository.findById(authorId).orElseThrow(null);
 		
 		book.setAuthors(new ArrayList<>());
 
