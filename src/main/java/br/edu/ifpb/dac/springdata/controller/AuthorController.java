@@ -2,7 +2,10 @@ package br.edu.ifpb.dac.springdata.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,17 +26,24 @@ public class AuthorController {
 	
 	@GetMapping("/newAuthor")
 	public ModelAndView newAuthor() {
-		ModelAndView mv = new ModelAndView("autores/form");
+		ModelAndView mv = new ModelAndView("author/form");
 		
 		mv.addObject(new Author());
 		return mv;
 	}
 	
 	
-	
-	public Author save(Author author) {
+	@PostMapping("/newAuthor")
+	public ModelAndView saveAuthor(@ModelAttribute Author author ,  BindingResult bindingResult) {
 		
-		return authorService.save(author);
+		ModelAndView mv = new ModelAndView("author/form");
+		
+		if (bindingResult.hasErrors()) {
+            return mv;
+        }
+		authorService.save(author);
+		
+		return mv;
 	}
 	
 	public Author findAuthorById(Long id) {
