@@ -1,13 +1,22 @@
 package br.edu.ifpb.dac.springdata.model;
+
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 
  /**
@@ -23,50 +32,64 @@ import javax.persistence.Table;
  * @author: Gabriel Oliveira
  */
 @Entity
-@Table(name = "tb_user")
-public class User  {
+@Table(name = "users")
+public class User {//implements UserDetails, Serializable{
+
+	//private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
-	
-	@Column(name = "Nome")
-	private String name;
-	
-	@Column(name = "E-mail")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private long id;
+
+	private String username;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Date birthDate;
+
 	private String email;
-	
-	//verificar Size
-	@Column(name = "username")
-    private String userName;
 
-   
-    //@Size(min = 2, max = 100)
-	@Column(name = "password")
-    private String password;
-	
-	
-	public String getUserName() {
-		return userName;
+	private String passwordUser;
+
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable( 
+			name = "usuarios_roles", 
+			joinColumns = @JoinColumn(
+					name = "usuario_id", referencedColumnName = "user_id"), 
+			inverseJoinColumns = @JoinColumn(
+					name = "role_id", referencedColumnName = "id")) 
+	private List<Role> roles;
+
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
-	public String getPassword() {
-		return password;
+	public long getId() {
+		return id;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -79,38 +102,76 @@ public class User  {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
-
-	public Long getId() {
-		return id;
+	
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getName() {
-		return name;
+	public String getPasswordUser() {
+		return passwordUser;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPasswordUser(String passwordUser) {
+		this.passwordUser = passwordUser;
 	}
 
-	public String getEmail() {
-		return email;
-	}
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		// TODO Auto-generated method stub
+//		List<GrantedAuthority> permissoes = new ArrayList<>();
+//
+//		if(roles.size()> 0) {
+//			for (Role r : roles) {
+//				permissoes.add(new SimpleGrantedAuthority(r.getNomeRole()));
+//			} 
+//			
+//		}else {
+//			permissoes.add(new SimpleGrantedAuthority("ROLE_USER"));
+//		}
+//		
+//		return permissoes;
+//
+//	}
+//
+//	@Override
+//	public String getPassword() {
+//
+//		// TODO Auto-generated method stub
+//		return this.passwordUser;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonExpired() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonLocked() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isCredentialsNonExpired() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isEnabled() {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
+//}
 	
 }
