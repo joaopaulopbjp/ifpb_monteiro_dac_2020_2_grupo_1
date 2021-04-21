@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+<head th:replace = "header :: pag-head">
+
+
+</head>
+<title>Cadastrar Autor</title>
+</head>
+<body>
+
+	<div th:replace="Header :: navbar-Home"></div>
+
+
+	<section layout:fragment="conteudo">
+		<div class="container-fluid">
+			<form id="autoresForm" th:object="${author}" method="POST"
+				action="/author/newAuthor">
+
+				<div th:replace="/fragments/MensagensErroValidacao :: alert"></div>
+
+			
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="mb-3">
+					<div class="form-group  col-sm-6  bw-required"
+						th:classappend="${#fields.hasErrors('name')} ? has-error">
+						<label for="name" class="control-label">Nome</label> <input
+							type="text" th:field="*{name}" id="name" class="form-control"
+							maxlength="100" />
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
