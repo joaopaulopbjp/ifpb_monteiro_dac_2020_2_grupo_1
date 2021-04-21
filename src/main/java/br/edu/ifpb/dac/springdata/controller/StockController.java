@@ -20,6 +20,7 @@ public class StockController {
 	
 	public Stock save(Stock stock) {
 		return stockService.save(stock);
+		
 	}
 	
 	
