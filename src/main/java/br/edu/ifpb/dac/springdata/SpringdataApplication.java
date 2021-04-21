@@ -28,7 +28,8 @@ import br.edu.ifpb.dac.springdata.model.User;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"br.edu.ifpb.dac.springdata"})
-public class SpringdataApplication {//implements CommandLineRunner {
+public class SpringdataApplication {
+	/*implements CommandLineRunner {
 //
 //	private final BookController bookController;
 //	
@@ -47,7 +48,7 @@ public class SpringdataApplication {//implements CommandLineRunner {
 //		this.orderController = orderController;
 //			
 //	}
-//	
+*/	
 	public static void main(String[] args) throws ClassNotFoundException {
 		SpringApplication.run(SpringdataApplication.class, args);		
 	}
