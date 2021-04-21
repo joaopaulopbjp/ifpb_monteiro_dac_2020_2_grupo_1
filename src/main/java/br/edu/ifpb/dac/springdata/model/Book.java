@@ -24,6 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_Book")
 public class Book {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
