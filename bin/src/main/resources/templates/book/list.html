@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout/layout-padrao}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Pesquisa de Livros</title>
+</head>
+<body>
+
+<section layout:fragment="header">
+    <div th:replace="/fragments/Header :: pesquisa ('Pesquisa de Livros', '/livros/novo', 'Novo Livro')"></div>
+</section>
+
+<section layout:fragment="conteudo">
+
+<div class="container-fluid">
+    <div class="table-responsive  bw-tabela-simples">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Quantidade de Páginas</th>
+            <th>Autor</th>
+            <th class="table-col-acoes"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${livros.empty}">
+            <td colspan="6">Sem livros</td>
+        </tr>
+        <tr th:each="livro : ${livros}">
+            <td th:text="${livro.id}">1</td>
+            <td>
+                <a href="#" th:href="@{'/livros/'+${livro.id}}"
+                   th:text="${livro.titulo}"> Título </a>
+            </td>
+            <td th:text="${livro.quantidade}">0</td>
+            <td th:if="${livro.autor != null and livro.autor.nome != null}" th:text="${livro.autor.nome}">Nenhum</td>
+            <td th:if="${livro.autor == null or livro.autor.nome == null}">Nenhum</td>
+            <td class="text-center">
+                <a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/livros/{id}(id=${livro.id})}">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+                <a class="btn  btn-link  btn-xs" title="Excluir" th:href="@{/livros/excluir/{id}(id=${livro.id})}">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</section>
+</body>
+
+</html>
