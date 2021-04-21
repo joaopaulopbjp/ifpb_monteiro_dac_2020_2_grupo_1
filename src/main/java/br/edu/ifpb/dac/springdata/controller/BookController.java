@@ -3,8 +3,18 @@ package br.edu.ifpb.dac.springdata.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+
+
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.service.BookService;
 import org.springframework.data.domain.Page;
@@ -19,6 +29,7 @@ import org.springframework.data.domain.PageRequest;
 
 
 @Controller
+@RequestMapping("/book")
 public class BookController {
 
 	@Autowired
@@ -31,11 +42,28 @@ public class BookController {
 		
 	}
 
-	public Book save(Book book) {
+	@GetMapping("/newBook")
+	public ModelAndView newBookform() {
 		
-		return bookService.save(book);
+		ModelAndView mv = new ModelAndView("book/form");
+		mv.addObject(new Book());
+	
+		return mv;
 	}
-
+	
+	@PostMapping("/newBooK")
+	public ModelAndView newBook(@ModelAttribute Book book, BindingResult bindingResult) {
+		
+		ModelAndView mv = new ModelAndView("book/form");
+		if (bindingResult.hasErrors()) {
+            return mv;
+        }
+		
+		bookService.save(book);
+		
+		return mv;
+	}
+	
 	public Book findById(long parseLong) {
 		
 		return null;
