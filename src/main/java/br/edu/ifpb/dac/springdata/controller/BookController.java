@@ -51,7 +51,7 @@ public class BookController {
 		return mv;
 	}
 	
-	@PostMapping("/newBooK")
+	@PostMapping("/newBook")
 	public ModelAndView newBook(@ModelAttribute Book book, BindingResult bindingResult) {
 		
 		ModelAndView mv = new ModelAndView("book/form");
