@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.springdata.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +13,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
+
+
 
 
  /**
@@ -60,7 +67,26 @@ public class User {//implements UserDetails, Serializable{
 			inverseJoinColumns = @JoinColumn(
 					name = "role_id", referencedColumnName = "id")) 
 	private List<Role> roles;
+	
+	/**
+	 * Um usuário para muitos pedidos
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Pedido> pedidos;
 
+	/**
+	 * Um usuário para um carrinho
+	 */
+	@OneToOne
+	private Carrinho carrinho;
+	
+	/**
+	 * Um usuário para um carrinho
+	 */
+
+	@OneToMany (cascade = CascadeType.ALL)
+	private List<Historico> historico;
+	
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -121,6 +147,38 @@ public class User {//implements UserDetails, Serializable{
 
 	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public List<Historico> getHistorico() {
+		return historico;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public void setHistorico(List<Historico> historico) {
+		this.historico = historico;
 	}
 
 //	@Override
