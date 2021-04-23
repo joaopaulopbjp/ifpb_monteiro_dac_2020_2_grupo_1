@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 /**
 *  classe  responsável pelas regras de negócios de Book 
@@ -30,6 +31,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@Column(name = "title", length = 50, nullable = false)
+	@NotBlank (message = "titulo obrigarotio")
 	private String title;
 	@Column(name = "price")
 	private double price;
