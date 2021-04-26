@@ -14,6 +14,7 @@ import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.repository.AuthorRepository;
 import br.edu.ifpb.dac.springdata.repository.BookRepository;
+
 /**
  * responsável por se comunicar com as camadas mais internas
  * @author: Gabriel Oliveira && Alisson
@@ -111,7 +112,13 @@ public class BookService{
 			
 	}
 	
-	
+	public List<Book> getBooks(int pages, int elements){
+		Page<Book> page = bookRepository.findAll(PageRequest.of(pages, elements, Sort.by(Sort.Direction.ASC,"title")));
+
+		List<Book> list = page.getContent();
+		
+		return list;
+	}
 	
 	
 	

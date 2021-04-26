@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.service.BookService;
+
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -63,6 +65,18 @@ public class BookController {
 		
 		return mv;
 	}
+	@GetMapping("/list")
+	public ModelAndView listBook() {
+		List<Book> books = bookService.getBooks(0, 1);
+		System.out.println(books.size());
+		
+		ModelAndView mv = new ModelAndView("book/list");
+		mv.addObject("books",books);
+		
+		return mv;
+	}
+	
+	
 	
 	public Book findById(long parseLong) {
 		
