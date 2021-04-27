@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="header :: pag-head">
+
+</head>
+<title>Cadastrar Editora</title>
+<body>
+
+	<div th:replace="Header :: navbar-Home"></div>
+
+
+	<section layout:fragment="conteudo">
+		<div class="container-fluid">
+			<form id="publishingCompanyForm" th:object="${publishingCompany}"
+				method="POST" action="/publishingCompany/newPublishingCompany">
+
+				<div th:replace="/fragments/MensagensErroValidacao :: alert"></div>
+
+
+				<input type="hidden" th:field="*{id}" />
+
+				
+				<div class="row">
+					<div class="col" th:classappend="${#fields.hasErrors('namePublishingCompany')} ? has-error">
+					<label for="namePublishingCompany" class="form-label">Editora</label>
+						<input type="text" class="form-control" placeholder="Nome da Editora"
+							 th:field="*{namePublishingCompany}">
+					</div>
+					<div class="col" th:classappend="${#fields.hasErrors('publisherCity')} ? has-error">
+					<label for="publisherCity" class="form-label">Cidade</label>
+						<input type="text" class="form-control" placeholder="Nome da Cidade da editora"
+							 th:field="*{publisherCity}">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
