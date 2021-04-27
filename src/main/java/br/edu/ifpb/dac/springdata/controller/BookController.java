@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,26 +55,53 @@ public class BookController {
 	}
 	
 	@PostMapping("/newBook")
-	public ModelAndView newBook(@ModelAttribute Book book, BindingResult bindingResult) {
+	public String newBook(@ModelAttribute Book book, BindingResult bindingResult) {
 		
-		ModelAndView mv = new ModelAndView("book/form");
+		
 		if (bindingResult.hasErrors()) {
-            return mv;
+            return "book/form";
         }
 		
 		bookService.save(book);
 		
-		return mv;
+		return "redirect:/book/list";
 	}
 	@GetMapping("/list")
 	public ModelAndView listBook() {
-		List<Book> books = bookService.getBooks(0, 1);
+		List<Book> books = bookService.getBooks(0, 5);
 		System.out.println(books.size());
 		
 		ModelAndView mv = new ModelAndView("book/list");
 		mv.addObject("books",books);
 		
 		return mv;
+	}
+	@GetMapping("/{id}")
+	public ModelAndView editBook(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("book/form");
+		try {
+			System.out.println(id);
+			mv.addObject(bookService.findById(id));
+			System.out.println("foi");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return mv;
+	}
+	@GetMapping("/delete/{id}")
+	public String deleteBook(@PathVariable("id") long id) {
+		
+		try {
+			bookService.deleteById(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/book/list";
 	}
 	
 	
