@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -43,6 +44,10 @@ public class Book {
 	private Integer nbOfPage;
 	@Column(name = "illustrations")
 	private Boolean illustrations;
+	
+	@ManyToOne
+	private PublishingCompany publishingCompany;
+	
 	
 	@Override
 	public int hashCode() {
@@ -139,6 +144,14 @@ public class Book {
 
 	public void setIllustrations(Boolean illustrations) {
 		this.illustrations = illustrations;
+	}
+
+	public PublishingCompany getPublishingCompany() {
+		return publishingCompany;
+	}
+
+	public void setPublishingCompany(PublishingCompany publishingCompany) {
+		this.publishingCompany = publishingCompany;
 	}
 
 //	@Override

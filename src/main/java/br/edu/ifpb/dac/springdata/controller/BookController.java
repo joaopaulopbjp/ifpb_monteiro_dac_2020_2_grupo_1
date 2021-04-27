@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
+import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
+import br.edu.ifpb.dac.springdata.model.PublishingCompany;
+import br.edu.ifpb.dac.springdata.service.AuthorService;
 import br.edu.ifpb.dac.springdata.service.BookService;
-
+import br.edu.ifpb.dac.springdata.service.PublishingCompanyService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,20 +42,33 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
+	@Autowired
+	private AuthorService authorService;
+	
+	@Autowired
+	private PublishingCompanyService publishingCompanyService;
+	
 	
 	public void saveAuthor(long id, Book book) throws Exception {
 		
 		bookService.saveAuthor(id, book);
 		
 	}
+	@ModelAttribute("authorsAll")
+	public List<Author> authors(){
+		return authorService.findAll();
+	}
+	@ModelAttribute("publishers")
+	public List<PublishingCompany> publishers(){
+		return publishingCompanyService.findAll();
+	}
+	
 
 	@GetMapping("/newBook")
-	public ModelAndView newBookform() {
+	public String newBookform(Book book) {
 		
-		ModelAndView mv = new ModelAndView("book/form");
-		mv.addObject(new Book());
-	
-		return mv;
+		
+		return "book/form";
 	}
 	
 	@PostMapping("/newBook")

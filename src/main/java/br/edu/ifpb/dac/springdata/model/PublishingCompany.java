@@ -1,9 +1,15 @@
 package br.edu.ifpb.dac.springdata.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class PublishingCompany {
@@ -15,6 +21,7 @@ public class PublishingCompany {
 	private String namePublishingCompany;
 	
 	private String publisherCity;
+	
 
 	public long getId() {
 		return id;
@@ -61,5 +68,7 @@ public class PublishingCompany {
 			return false;
 		return true;
 	}
+
+
 	
 }
