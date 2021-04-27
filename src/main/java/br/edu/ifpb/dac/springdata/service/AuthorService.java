@@ -27,7 +27,7 @@ public class AuthorService {
 	//METODO PARA RETORNAR AUTORES CADASTRADOS 
 	public List<Author> findAll(){
 		
-		return (List<Author>) authorRepository.findAll();
+		return  (List<Author>) authorRepository.findAll();
 	}
 	//DELETA AUTor
 	public void delet(long id) {
