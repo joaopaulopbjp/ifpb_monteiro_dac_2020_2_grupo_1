@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 
 
@@ -55,6 +59,12 @@ public class User {//implements UserDetails, Serializable{
 	private Date birthDate;
 
 	private String email;
+	
+	/**
+	 * Status ativo ou inativo
+	 */
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	private String passwordUser;
 
@@ -84,6 +94,7 @@ public class User {//implements UserDetails, Serializable{
 	 * Um usuário para um carrinho
 	 */
 
+	
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Historico> historico;
 	

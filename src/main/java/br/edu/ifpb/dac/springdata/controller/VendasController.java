@@ -140,15 +140,15 @@ public class VendasController {
 		return "redirect:/vendas/homepage";
 	}
 	
-	@GetMapping("/historico")
-    public ModelAndView historico (HttpSession session) throws Exception{
-    	ModelAndView mv = new ModelAndView("/project/tables/historic");
-    	User usuarioLogado = usuarioLogado(session);
-    	User usuario = crudUsuario.findById(usuarioLogado.getId());
-    	mv.addObject("historicos",usuario.getHistorico());
-    	return mv;
-    }	
-	
+//	@GetMapping("/historico")
+//    public ModelAndView historico (HttpSession session) throws Exception{
+//    	ModelAndView mv = new ModelAndView("/project/tables/historic");
+//    	User usuarioLogado = usuarioLogado(session);
+//    	User usuario = crudUsuario.findById(usuarioLogado.getId());
+//    	mv.addObject("historicos",usuario.getHistorico());
+//    	return mv;
+//    }	
+//	
 
 	private User usuarioLogado(HttpSession session) throws Exception {
 		User usuariologado = (User) session.getAttribute("usuarioLogado");

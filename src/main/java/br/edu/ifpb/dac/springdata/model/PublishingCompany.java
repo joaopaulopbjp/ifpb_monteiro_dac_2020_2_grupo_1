@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -17,9 +18,9 @@ public class PublishingCompany {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+	@NotBlank (message ="O nome da Editora é obrigatorio")
 	private String namePublishingCompany;
-	
+	@NotBlank (message ="O nome da cidade é obrigatorio")
 	private String publisherCity;
 	
 
