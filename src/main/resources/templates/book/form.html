@@ -15,7 +15,7 @@
 
 	<section layout:fragment="conteudo">
 		<div class="container-fluid">
-			<form id="autoresForm" th:object="${book}" method="POST"
+			<form id="autoresForm" th:object="${book}" enctype="multipart/form-data" method="POST"
 				action="/book/newBook">
 
 				<div th:replace="/fragments/MensagensErroValidacao :: alert"></div>
@@ -77,6 +77,11 @@
 						</label>
 					</div>
 				</div>
+				<div class="col-12">
+						<label for="exampleInputFile">Imagem de capa</label> <input
+							type="file" id="file" name= "file">
+						<p class="help-block">Escolha uma imagem do seu Computador.</p>
+					</div>
 				<div class="col-12">
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
 				</div>

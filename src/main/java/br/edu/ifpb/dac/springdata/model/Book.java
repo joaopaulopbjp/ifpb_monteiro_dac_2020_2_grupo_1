@@ -45,6 +45,8 @@ public class Book {
 	@Column(name = "illustrations")
 	private Boolean illustrations;
 	
+	private String imgId;
+	
 	@ManyToOne
 	private PublishingCompany publishingCompany;
 	
@@ -152,6 +154,14 @@ public class Book {
 
 	public void setPublishingCompany(PublishingCompany publishingCompany) {
 		this.publishingCompany = publishingCompany;
+	}
+
+	public String getImgId() {
+		return imgId;
+	}
+
+	public void setImgId(String imgId) {
+		this.imgId = imgId;
 	}
 
 //	@Override

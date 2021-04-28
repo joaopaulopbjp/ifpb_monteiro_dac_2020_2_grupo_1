@@ -1,5 +1,10 @@
 package br.edu.ifpb.dac.springdata.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -48,6 +55,8 @@ public class BookController {
 	@Autowired
 	private PublishingCompanyService publishingCompanyService;
 	
+	private static String imagePath = System.getProperty("user.dir") + "/src/main/resources/static/images/";
+	
 	
 	public void saveAuthor(long id, Book book) throws Exception {
 		
@@ -72,7 +81,7 @@ public class BookController {
 	}
 	
 	@PostMapping("/newBook")
-	public String newBook(@ModelAttribute Book book, BindingResult bindingResult) {
+	public String newBook(@ModelAttribute Book book, BindingResult bindingResult, @RequestParam("file") MultipartFile arquivo) {
 		
 		
 		if (bindingResult.hasErrors()) {
@@ -80,6 +89,22 @@ public class BookController {
         }
 		
 		bookService.save(book);
+		
+		try {
+			if (!arquivo.isEmpty()) {
+				byte[] bytes = arquivo.getBytes();
+				Path caminho = Paths
+						.get(imagePath + String.valueOf(book.getId()) + arquivo.getOriginalFilename());
+				Files.write(caminho, bytes);
+
+				book.setImgId(String.valueOf(book.getId()) + arquivo.getOriginalFilename());
+				bookService.save(book);
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		return "redirect:/book/list";
 	}
@@ -121,7 +146,33 @@ public class BookController {
 		return "redirect:/book/list";
 	}
 	
+	@GetMapping("/info/cover/{imgPath}")
+	@ResponseBody
+	public byte[] retornarImagem(@PathVariable("imgPath") String imagem) throws IOException {
+		System.out.println(imagem);
+		File imagemArquivo = new File(imagePath + imagem);
+		if (imagem != null || imagem.trim().length() > 0) {
+			System.out.println("No IF");
+			return Files.readAllBytes(imagemArquivo.toPath());
+		}
+		
+		
+		return null;
+	}
 	
+	@GetMapping("/info/{id}")
+	public ModelAndView infoBook(@PathVariable("id")long id) {
+		ModelAndView mv = new ModelAndView("book/info");
+		try {
+			Book book = bookService.findById(id);
+			mv.addObject(book);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println();
+		return mv;
+	}
 	
 	public Book findById(long parseLong) {
 		
