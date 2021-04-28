@@ -6,12 +6,17 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
+/**
+ * Classe responsavel por da todas as permições do usuario e chamada da pagina de login
+ *
+ */
 
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
@@ -31,6 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	}
 	
+	/**
+	 * Metodo de autenticação do usuario recebendo pelo repositorio ImplementsUserDetailsService 
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder, 
 			PasswordEncoder passwordEncoder, 
@@ -41,6 +49,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	} 
 	
 	
+	/**
+	 * Método que habilita as pastas estaticas para o spring security não interropelas
+	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception{
 		web.ignoring().antMatchers("/images/**","/js/**" ,"/css/**","/templates/**","/drivers/**");

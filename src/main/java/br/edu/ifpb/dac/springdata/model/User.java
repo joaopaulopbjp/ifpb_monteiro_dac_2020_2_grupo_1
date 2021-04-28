@@ -23,6 +23,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,21 +36,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 
-
-
-
-
-
- /**
- *  classe  responsável pelas regras de negócios de usuarios 
- * 
- * * @author: Gabriel Oliveira && Alisson
- */
- 
- 
-
 /**
- *  classe  responsável pelas regras de negócios de usuarios 
+ * Classe resposavel por criar o usuários, para que o spring security possa salvar esse
+ *         usuário com as devidas autenticações
  * @author: Gabriel Oliveira
  */
 @Entity
@@ -58,12 +51,16 @@ public class User implements UserDetails, Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private long id;
-
+	
+	@NotBlank(message = "O nome de login é obrigatório")
+	@Size(min = 4, message = "USERNAME tem que ter pelo menos 4 letras")
+	@Column(unique = true)
 	private String username;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
-
+	
+	@Email(message="verifique o email corretamente com @")
 	private String email;
 	
 	/**
@@ -71,7 +68,10 @@ public class User implements UserDetails, Serializable{
 	 */
 	@Enumerated(EnumType.STRING)
 	private Status status;
-
+	
+	@NotNull
+	@NotEmpty(message = "Password não pode ser vazio.")
+	@Size(min = 6, message = "Password deve ser no mínimo 6 caracter.")
 	private String passwordUser;
 
 
@@ -245,6 +245,14 @@ public class User implements UserDetails, Serializable{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 

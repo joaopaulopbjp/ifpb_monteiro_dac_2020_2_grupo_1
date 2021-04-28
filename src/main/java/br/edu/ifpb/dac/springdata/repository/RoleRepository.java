@@ -9,5 +9,5 @@ import br.edu.ifpb.dac.springdata.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long> {
-//  public Role findByNome(String nomeRole);
+//   public Role findByNome(String nomeRole);
 }

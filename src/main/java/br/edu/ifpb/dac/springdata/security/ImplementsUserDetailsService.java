@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.ifpb.dac.springdata.repository.UserRepository;
 
-
+/**
+ * Classe de serviço do spring security onde verifica no banco os dados do
+ * usuario.
+ */
 
 @Repository
 @Transactional
