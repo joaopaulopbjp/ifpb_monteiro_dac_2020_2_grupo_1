@@ -13,6 +13,6 @@ import br.edu.ifpb.dac.springdata.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	
+	User findByUsername(String username);
 	User findByEmail(String email);
 }

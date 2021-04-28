@@ -1,5 +1,8 @@
 package br.edu.ifpb.dac.springdata.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +25,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 
@@ -44,7 +50,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "users")
-public class User {//implements UserDetails, Serializable{
+public class User implements UserDetails, Serializable{
 
 	//private static final long serialVersionUID = 1L;
 
@@ -192,55 +198,55 @@ public class User {//implements UserDetails, Serializable{
 		this.historico = historico;
 	}
 
-//	@Override
-//	public Collection<? extends GrantedAuthority> getAuthorities() {
-//		// TODO Auto-generated method stub
-//		List<GrantedAuthority> permissoes = new ArrayList<>();
-//
-//		if(roles.size()> 0) {
-//			for (Role r : roles) {
-//				permissoes.add(new SimpleGrantedAuthority(r.getNomeRole()));
-//			} 
-//			
-//		}else {
-//			permissoes.add(new SimpleGrantedAuthority("ROLE_USER"));
-//		}
-//		
-//		return permissoes;
-//
-//	}
-//
-//	@Override
-//	public String getPassword() {
-//
-//		// TODO Auto-generated method stub
-//		return this.passwordUser;
-//	}
-//
-//	@Override
-//	public boolean isAccountNonExpired() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean isAccountNonLocked() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean isCredentialsNonExpired() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean isEnabled() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
 
-//}
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		List<GrantedAuthority> permissoes = new ArrayList<>();
+
+		if(roles.size()> 0) {
+			for (Role r : roles) {
+				permissoes.add(new SimpleGrantedAuthority(r.getNomeRole()));
+			} 
+			
+		}else {
+			permissoes.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
+		
+		return permissoes;
+
+	}
+
+
+	public String getPassword() {
+
+		// TODO Auto-generated method stub
+		return this.passwordUser;
+	}
+
+
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
 	
 }

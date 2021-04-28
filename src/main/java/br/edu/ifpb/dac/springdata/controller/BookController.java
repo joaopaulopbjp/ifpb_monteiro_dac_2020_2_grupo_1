@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -58,11 +59,6 @@ public class BookController {
 	private static String imagePath = System.getProperty("user.dir") + "/src/main/resources/static/images/";
 	
 	
-	public void saveAuthor(long id, Book book) throws Exception {
-		
-		bookService.saveAuthor(id, book);
-		
-	}
 	@ModelAttribute("authorsAll")
 	public List<Author> authors(){
 		return authorService.findAll();
@@ -118,6 +114,7 @@ public class BookController {
 		
 		return mv;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public ModelAndView editBook(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("book/form");
@@ -133,6 +130,7 @@ public class BookController {
 		
 		return mv;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/delete/{id}")
 	public String deleteBook(@PathVariable("id") long id) {
 		
@@ -173,36 +171,6 @@ public class BookController {
 		System.out.println();
 		return mv;
 	}
-	
-	public Book findById(long parseLong) {
-		
-		return null;
-	}
-
-	public void deleteById(Long bookIdDelete) throws Exception {
-		
-		bookService.deleteById(bookIdDelete);
-		
-	}
-	//consulta feita de forma asc
-	public Page<Book> listaTodosBooks(){
-		
-		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 100, Sort.by(Sort.Direction.ASC, "price")));
-		
-	}
-	
-	//LISTA OS 5 MAIS BARATOS
-	public Page<Book> listaFiveprice(){
-		
-		 return bookService.ListFiveBookByPrice(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "price")));
-		
-	}
-	
-	
-	
-
-
-	
 	
 	
 }

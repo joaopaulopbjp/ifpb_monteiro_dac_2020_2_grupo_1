@@ -23,14 +23,13 @@ import br.edu.ifpb.dac.springdata.service.UserService;
  * @author: Gabriel Oliveira && Alisson
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
 	
-	@PostMapping("/newUser")
+	@PostMapping("/singUp")
     public ModelAndView save(@ModelAttribute @Valid User usuario, BindingResult bindingResult) {
 		
 		ModelAndView mv = new ModelAndView("user/form");
@@ -42,13 +41,20 @@ public class UserController {
         return mv;
     }
 	
-	@GetMapping("/newUser")
+	@GetMapping("/singUp")
     public ModelAndView usuarios() {
 		ModelAndView mv = new ModelAndView("user/form");
 		mv.addObject(new User());
 	
 		return mv;
     }
+	
+	@GetMapping("/singIn")
+	public String login() {
+		
+		return "login";
+	}
+	
 	
 //	public User save(User newUser) {
 //		

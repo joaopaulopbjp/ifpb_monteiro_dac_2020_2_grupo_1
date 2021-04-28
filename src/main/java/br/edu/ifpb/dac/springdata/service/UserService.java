@@ -1,6 +1,9 @@
 package br.edu.ifpb.dac.springdata.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.springdata.model.User;
@@ -17,6 +20,9 @@ public class UserService {
 	
 	
 	public User save(User user) {
+		
+		String passwordBC = new BCryptPasswordEncoder().encode(user.getPassword());
+		user.setPasswordUser(passwordBC);
 		
 		return userRepository.save(user);
 	}
@@ -38,6 +44,18 @@ public class UserService {
 		
 		return userRepository.findByEmail(email);
 		
+	}
+	
+	public User findByUsername(String usarname) {
+		return userRepository.findByUsername(usarname);
+	}
+	
+	public String getLogin() {
+
+		Authentication principal = SecurityContextHolder.getContext().getAuthentication();
+
+		return principal.getName();
+
 	}
 	
 }

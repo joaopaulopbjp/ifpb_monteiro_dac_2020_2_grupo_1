@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.springdata.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class AuthorController {
 	@Autowired
 	private AuthorService authorService;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/newAuthor")
 	public ModelAndView newAuthor() {
 		ModelAndView mv = new ModelAndView("author/form");
@@ -34,6 +36,7 @@ public class AuthorController {
 		return mv;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/newAuthor")
 	public ModelAndView saveAuthor(@ModelAttribute Author author ,  BindingResult bindingResult) {
 		
@@ -57,6 +60,7 @@ public class AuthorController {
 		
 		return mv;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public ModelAndView editAuthor(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("author/form");
@@ -72,6 +76,7 @@ public class AuthorController {
 		
 		return mv;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/delete/{id}")
 	public String deleteAuthor(@PathVariable("id") long id) {
 		
