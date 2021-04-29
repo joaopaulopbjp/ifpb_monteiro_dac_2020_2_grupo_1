@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
+ * Essa classe serve para configurar o Spring Security
  * Classe responsavel por da todas as permições do usuario e chamada da pagina de login
  *
  */

@@ -4,7 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+
+
 
 @Entity
 public class Endereco {
@@ -15,6 +19,10 @@ public class Endereco {
 
 	@NotBlank( message = "O CEP é obrigatorio")
 	private String cep;
+	
+	@ManyToOne
+	@JoinColumn(name="USERID")
+	private User usuario;
 	
 	private String logradouro;
 	private String complemento;

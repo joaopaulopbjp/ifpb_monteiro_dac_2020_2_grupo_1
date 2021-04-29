@@ -1,5 +1,10 @@
 package dto;
 
+
+/*
+ * objeto simples usado para transferir dados de um local a outro na aplicação
+ */
+
 import org.springframework.stereotype.Component;
 
 @Component

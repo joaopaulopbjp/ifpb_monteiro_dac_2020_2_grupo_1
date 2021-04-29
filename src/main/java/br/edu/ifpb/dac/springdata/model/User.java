@@ -36,6 +36,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 
+
 /**
  * Classe resposavel por criar o usuários, para que o spring security possa salvar esse
  *         usuário com as devidas autenticações
@@ -103,6 +104,9 @@ public class User implements UserDetails, Serializable{
 	
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Historico> historico;
+	
+	@OneToMany(mappedBy = "users", cascade = CascadeType.MERGE)
+	private List<Endereco> enderecos;
 	
 	public Date getBirthDate() {
 		return birthDate;
@@ -253,6 +257,14 @@ public class User implements UserDetails, Serializable{
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 

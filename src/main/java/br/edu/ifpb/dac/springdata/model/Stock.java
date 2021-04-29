@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
 *  classe  responsável pelas regras de negócios de Stock
@@ -27,6 +28,9 @@ public class Stock {
 	@OneToMany(cascade = CascadeType.MERGE)
 	//@JoinColumn(name = "book_Stock")
 	private List<Book> books;
+	
+	@NotNull
+	private int quantidade;
 	
 	@Override
 	public int hashCode() {

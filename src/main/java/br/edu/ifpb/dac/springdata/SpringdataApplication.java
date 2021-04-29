@@ -12,12 +12,10 @@ import org.springframework.data.domain.Page;
 
 import br.edu.ifpb.dac.springdata.controller.AuthorController;
 import br.edu.ifpb.dac.springdata.controller.BookController;
-import br.edu.ifpb.dac.springdata.controller.OrderController;
 import br.edu.ifpb.dac.springdata.controller.StockController;
 import br.edu.ifpb.dac.springdata.controller.UserController;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
-import br.edu.ifpb.dac.springdata.model.Order;
 import br.edu.ifpb.dac.springdata.model.Stock;
 import br.edu.ifpb.dac.springdata.model.User;
 

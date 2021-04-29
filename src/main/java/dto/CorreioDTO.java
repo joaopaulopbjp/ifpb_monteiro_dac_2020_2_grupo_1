@@ -1,5 +1,9 @@
 package dto;
 
+/*
+ * objeto simples usado para transferir dados de um local a outro na aplicação
+ */
+
 public class CorreioDTO {
 	
 	private long indentificador;

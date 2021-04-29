@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.PublishingCompany;
 import br.edu.ifpb.dac.springdata.service.PublishingCompanyService;
 
