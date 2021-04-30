@@ -46,7 +46,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "users")
 public class User implements UserDetails, Serializable{
 
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class User implements UserDetails, Serializable{
 	
 	@NotBlank(message = "O nome de login é obrigatório")
 	@Size(min = 4, message = "USERNAME tem que ter pelo menos 4 letras")
-	@Column(unique = true)
+	//@Column(unique = true)
 	private String username;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -105,9 +105,9 @@ public class User implements UserDetails, Serializable{
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Historico> historico;
 	
-	@OneToMany(mappedBy = "users", cascade = CascadeType.MERGE)
-	private List<Endereco> enderecos;
-	
+//	@OneToMany(mappedBy = "users", cascade = CascadeType.MERGE)
+//	private List<Endereco> enderecos;
+//	
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -203,6 +203,7 @@ public class User implements UserDetails, Serializable{
 	}
 
 
+	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		List<GrantedAuthority> permissoes = new ArrayList<>();
@@ -220,32 +221,32 @@ public class User implements UserDetails, Serializable{
 
 	}
 
-
+	@Override
 	public String getPassword() {
 
 		// TODO Auto-generated method stub
 		return this.passwordUser;
 	}
 
-
+	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-
+	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-
+	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-
+	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
@@ -258,14 +259,14 @@ public class User implements UserDetails, Serializable{
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
+//
+//	public List<Endereco> getEnderecos() {
+//		return enderecos;
+//	}
+//
+//	public void setEnderecos(List<Endereco> enderecos) {
+//		this.enderecos = enderecos;
+//	}
 
 
 	

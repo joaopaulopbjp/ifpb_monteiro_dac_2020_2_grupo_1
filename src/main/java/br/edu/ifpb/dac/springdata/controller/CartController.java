@@ -29,20 +29,33 @@ import restCliente.ClienteRest;
 
 
 @Controller
-@RequestMapping("/vendas")
-public class VendasController {
+@RequestMapping("/cart")
+public class CartController {
 	
 	@Autowired
 	private BookService crudBook;
 	
 	@Autowired
-	private UserService crudUsuario;
+	private UserService userService;
 	
 	@Autowired
 	private CarrinhoService crudCarrinho;
 	
 	@Autowired
 	private HistoricoService crudHistorico;
+	
+	
+	
+	@GetMapping()
+	public ModelAndView cart() {
+		ModelAndView mv = new ModelAndView("cart");
+		
+		
+		return mv;
+	}
+	
+	
+	
 	
 	@GetMapping("livro/{id}")
 	public ModelAndView venda(@PathVariable("id") long id) throws Exception{
@@ -76,7 +89,7 @@ public class VendasController {
 	    }
 	    usuario.getCarrinho().getPedido().getItemPedidos().add(itemPedido);
 	    usuario.getCarrinho().setQuantItens(usuario.getCarrinho().getQuantItens()+1);
-	    crudUsuario.save(usuario);
+	    userService.save(usuario);
 	    
         int quantidade = usuario.getCarrinho().getQuantItens();
 	    session.setAttribute("quantidade",quantidade);
@@ -103,7 +116,7 @@ public class VendasController {
 				
 				usuario.getCarrinho().getPedido().getItemPedidos().remove(i);
 				usuario.getCarrinho().setQuantItens(usuario.getCarrinho().getQuantItens() - 1);
-				crudUsuario.save(usuario);
+				userService.save(usuario);
 				session.setAttribute("usuarioLogado",usuario);
 				int quantidade = usuario.getCarrinho().getQuantItens();
 				session.setAttribute("quantidade",quantidade);
@@ -133,7 +146,7 @@ public class VendasController {
 		}
 		
 		usuario.setCarrinho(null);
-		crudUsuario.save(usuario);
+		userService.save(usuario);
 		int quantidade = 0;
 		session.setAttribute("quantidade",quantidade);
 		 
@@ -152,7 +165,7 @@ public class VendasController {
 
 	private User usuarioLogado(HttpSession session) throws Exception {
 		User usuariologado = (User) session.getAttribute("usuarioLogado");
-		User usuario  = crudUsuario.findById(usuariologado.getId());
+		User usuario  = userService.findById(usuariologado.getId());
 		return usuario;
 		
 	}

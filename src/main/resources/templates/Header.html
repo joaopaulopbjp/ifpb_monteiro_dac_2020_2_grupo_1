@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	taglib prefix="sec" uri="http://www.springframework.org/security/tags">
 
 <head th:fragment="pag-head">
 <!-- Required meta tags -->
@@ -39,7 +40,9 @@
 						</li>
 						<li class="nav-item"><a class="nav-link"
 							href="/publishingCompany/list">Editoras</a></li>
-						<li class="nav-item dropdown"><a
+							
+							
+						<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Cadastrar </a>
@@ -51,13 +54,21 @@
 									href="/publishingCompany/newPublishingCompany">Editora </a></li>
 							</ul></li>
 					</ul>
-					
+
 				</div>
+				<span sec:authentication="name">Bob</span>
+				<a type="button" class="btn btn-outline-primary"
+					href="/signUp"> Cadastre-se
+				</a>
+				
+				<a type="button" class="btn btn-outline-primary"
+					href="/signIn"> Login
+				</a>
+				
 				<form action="/logout" method="post" class="d-flex">
 
-						<button type="submit" class="btn btn-outline-danger">
-							Sair</button>
-					</form>
+					<button type="submit" class="btn btn-outline-danger">Sair</button>
+				</form>
 			</div>
 
 

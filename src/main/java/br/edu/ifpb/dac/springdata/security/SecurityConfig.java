@@ -15,24 +15,14 @@ import br.edu.ifpb.dac.springdata.service.UserService;
 @Configuration
 public class SecurityConfig {
 
-	@Autowired
-	private static UserService crud;
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		
+
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	public static void main(String[] args) {
-		User usuario = new User();
-		usuario.setUsername("admin");
-		usuario.setPasswordUser(new BCryptPasswordEncoder().encode("1234"));
-		usuario.setRoles(new ArrayList<>());
-		usuario.setStatus(Status.ATIVO);
-		usuario.setEmail("gabriel0@gmail.com");
-		crud.save(usuario);
-		
-		System.out.println("Criando Usuário ........");
-//	System.out.println(new BCryptPasswordEncoder().encode("admins"));
+
+		System.out.println(new BCryptPasswordEncoder().encode("yaboku123"));
 	}
 }

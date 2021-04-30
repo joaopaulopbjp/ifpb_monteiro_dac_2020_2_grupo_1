@@ -20,10 +20,10 @@ public class Endereco {
 	@NotBlank( message = "O CEP é obrigatorio")
 	private String cep;
 	
-	@ManyToOne
-	@JoinColumn(name="USERID")
-	private User usuario;
-	
+//	@ManyToOne
+//	@JoinColumn(name="USERID")
+//	private User usuario;
+//	
 	private String logradouro;
 	private String complemento;
 	private String bairro;

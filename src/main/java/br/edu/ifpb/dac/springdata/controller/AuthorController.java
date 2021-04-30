@@ -38,16 +38,14 @@ public class AuthorController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/newAuthor")
-	public ModelAndView saveAuthor(@ModelAttribute Author author ,  BindingResult bindingResult) {
-		
-		ModelAndView mv = new ModelAndView("author/form");
+	public String saveAuthor(@ModelAttribute Author author ,  BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
-            return mv;
+            return "author/form";
         }
 		authorService.save(author);
 		
-		return mv;
+		return "redirect:/author/newAuthor";
 	}
 	
 	@GetMapping("/list")

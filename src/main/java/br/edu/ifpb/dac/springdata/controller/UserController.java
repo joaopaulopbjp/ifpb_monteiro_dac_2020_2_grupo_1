@@ -25,43 +25,30 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
-	@PostMapping("/singUp")
-    public ModelAndView save(@ModelAttribute @Valid User usuario, BindingResult bindingResult) {
+	@PostMapping("/signUp")
+    public String save(@ModelAttribute @Valid User usuario, BindingResult bindingResult) {
 		
-		ModelAndView mv = new ModelAndView("user/form");
+		ModelAndView mv = new ModelAndView("user/sing-up");
 		if (bindingResult.hasErrors()) {
-            return mv;
+            return "user/sing-up";
         }
 
         userService.save(usuario);
-        return mv;
+        return "redirect:/author/list";
     }
 	
-	@GetMapping("/singUp")
+	@GetMapping("/signUp")
     public ModelAndView usuarios() {
-		ModelAndView mv = new ModelAndView("user/form");
+		ModelAndView mv = new ModelAndView("user/sing-up");
 		mv.addObject(new User());
 	
 		return mv;
     }
 	
-	@GetMapping("/singIn")
+	@GetMapping("/signIn")
 	public String login() {
 		
 		return "login";
-	}
-	
-	
-//	public User save(User newUser) {
-//		
-//		return userService.save(newUser);
-//	}
-
-	public User FindByEmail(String email) {
-		
-		
-		return userService.findByEmail(email);
 	}
 	
 }
