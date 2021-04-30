@@ -9,7 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
 
 
 @Entity
@@ -29,6 +33,10 @@ public class Pedido {
 	//um pedido para muitos itens
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemPedido> itemPedidos;
+	
+	@OneToOne
+	@JoinColumn(name = "TB_Paymente")
+	private Payment pagamento;
    
 	public Status getStatus() {
 		return status;

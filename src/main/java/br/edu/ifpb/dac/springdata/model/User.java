@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -105,9 +106,9 @@ public class User implements UserDetails, Serializable{
 	@OneToMany (cascade = CascadeType.ALL)
 	private List<Historico> historico;
 	
-//	@OneToMany(mappedBy = "users", cascade = CascadeType.MERGE)
-//	private List<Endereco> enderecos;
-//	
+	@Embedded
+	private Endereco enderecos;
+	
 	public Date getBirthDate() {
 		return birthDate;
 	}

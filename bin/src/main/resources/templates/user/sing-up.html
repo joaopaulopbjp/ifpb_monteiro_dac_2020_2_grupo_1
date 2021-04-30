@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="header :: pag-head">
+
+</head>
+<meta charset="UTF-8" />
+<title>Cadastro de Usuário</title>
+<body>
+
+	<div th:replace="Header :: navbar-Home"></div>
+
+	<section layout:fragment="conteudo">
+		<div class="container-fluid">
+			<form class="row g-3" id="autoresForm" th:object="${user}"
+				method="POST" action="/signUp">
+
+				<div th:replace="/fragments/MensagensErroValidacao :: alert"></div>
+
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="col-md-4">
+					<label for="inputUsername" class="form-label">Username</label> <input
+						type="text" class="form-control" id="inputUsername"
+						th:field="*{username}">
+				</div>
+				<div class="col-md-4">
+					<label for="inputEmail" class="form-label">Email</label> <input
+						type="email" class="form-control" id="inputEmail"
+						th:field="*{email}">
+				</div>
+				<div class="col-4">
+					<label for="inputPassword" class="form-label">Senha</label> <input
+						type="password" class="form-control" id="inputPassword"
+						th:field="*{passwordUser}">
+				</div>
+
+
+				<div class="col-12">
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</div>
+
+			</form>
+		</div>
+	</section>
+
+</body>
+</html>

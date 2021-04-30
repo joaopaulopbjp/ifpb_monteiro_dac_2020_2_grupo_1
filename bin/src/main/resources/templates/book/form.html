@@ -11,11 +11,11 @@
 <body>
 
 	<div th:replace="Header :: navbar-Home"></div>
-	
-	
+
+
 	<section layout:fragment="conteudo">
 		<div class="container-fluid">
-			<form id="autoresForm" th:object="${book}" method="POST"
+			<form id="autoresForm" th:object="${book}" enctype="multipart/form-data" method="POST"
 				action="/book/newBook">
 
 				<div th:replace="/fragments/MensagensErroValidacao :: alert"></div>
@@ -25,40 +25,63 @@
 
 				<div class="col-md-6">
 					<label for="title" class="form-label">Título</label> <input
-						type="text" class="form-control" id="title" name="title">
+						type="text" class="form-control" id="title" th:field="*{title}">
 				</div>
 
 
 				<div class="col-md-6">
 					<label for="description" class="form-label">Descrição</label>
-					<textarea class="form-control" id="description" name="description"
-						rows="3"></textarea>
+					<textarea class="form-control" id="description"
+						th:field="*{description}" rows="3"></textarea>
 				</div>
 
-				<div class="col-2">
+				<div class="col-md-2">
 					<label for="price" class="form-label">Preço</label> <input
-						type="text" class="form-control" id="price" name="price">
+						type="text" class="form-control" id="price" th:field="*{price}">
+
+				</div>
+
+				<div class="col-md-3">
+					<label for="authors" class="form-label">Autor do Livro</label>
+					<select class="form-select" th:field="*{authors}">
+						<option th:each="author : ${authorsAll}" th:value="${author.id}"><span
+								th:text="${author.name}"> Selecione... </span></option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label for="authors" class="form-label">Editora do Livro</label>
+					<select class="form-select" th:field="*{publishingCompany}">
+						<option th:each="publishing : ${publishers}" th:value="${publishing.id}"><span
+								th:text="${publishing.namePublishingCompany}"> Selecione... </span></option>
+					</select>
 				</div>
 
 				<div class="col-md-3">
 					<label for="isbn" class="form-label">ISBN</label> <input
-						type="text" class="form-control" id="isbn" name="isbn">
+						type="text" class="form-control" id="isbn" th:field="*{isbn}">
 				</div>
 
 				<div class="col-md-2">
 					<label for="nbOfPage" class="form-label">Número de Páginas</label>
 					<input type="text" class="form-control" id="nbOfPage"
-						name="nbOfPage">
+						th:field="*{nbOfPage}">
 				</div>
+
 
 
 				<div class="col-12">
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" id="illustrations"
-							name="illustrations"> <label class="form-check-label"
-							for="illustrations"> Ilustraçôes </label>
+							th:field="*{illustrations}"> <label
+							class="form-check-label" for="illustrations"> Ilustraçôes
+						</label>
 					</div>
 				</div>
+				<div class="col-12">
+						<label for="exampleInputFile">Imagem de capa</label> <input
+							type="file" id="file" name= "file">
+						<p class="help-block">Escolha uma imagem do seu Computador.</p>
+					</div>
 				<div class="col-12">
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
 				</div>

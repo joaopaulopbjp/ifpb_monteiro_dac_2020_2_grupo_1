@@ -1,29 +1,22 @@
 package br.edu.ifpb.dac.springdata.model;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.validation.constraints.NotBlank;
 
 
 
-@Entity
+@Embeddable
 public class Endereco {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
 
 	@NotBlank( message = "O CEP é obrigatorio")
 	private String cep;
 	
-//	@ManyToOne
-//	@JoinColumn(name="USERID")
-//	private User usuario;
-//	
+	
 	private String logradouro;
 	private String complemento;
 	private String bairro;
