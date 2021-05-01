@@ -28,9 +28,11 @@ import org.springframework.ui.Model;
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.PublishingCompany;
+import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
 import br.edu.ifpb.dac.springdata.service.BookService;
 import br.edu.ifpb.dac.springdata.service.PublishingCompanyService;
+import br.edu.ifpb.dac.springdata.service.UserService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,6 +46,9 @@ import org.springframework.data.domain.PageRequest;
 @RequestMapping("/book")
 public class BookController {
 
+	@Autowired
+	private UserService userService;
+	
 	@Autowired
 	private BookService bookService;
 	
@@ -108,6 +113,13 @@ public class BookController {
 		List<Book> books = bookService.findByTitleContaining(title);
 		
 		ModelAndView mv = new ModelAndView("book/list");
+
+		if(userService.getLogin().equals("anonymousUser")) {
+
+		}else {
+			User user = userService.findByUsername(userService.getLogin());
+			mv.addObject("user", user);
+		}
 		mv.addObject("books",books);
 		
 		return mv;

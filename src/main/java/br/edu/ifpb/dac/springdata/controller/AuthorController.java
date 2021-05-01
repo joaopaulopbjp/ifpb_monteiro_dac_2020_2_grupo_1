@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
+import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
+import br.edu.ifpb.dac.springdata.service.UserService;
 /**
  * camada intermediária responsavel por gerenciar author
  * @author: Gabriel Oliveira && Alisson
@@ -23,39 +25,51 @@ import br.edu.ifpb.dac.springdata.service.AuthorService;
 @Controller
 @RequestMapping("/author")
 public class AuthorController {
+
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private AuthorService authorService;
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/newAuthor")
 	public ModelAndView newAuthor() {
 		ModelAndView mv = new ModelAndView("author/form");
-		
+
 		mv.addObject(new Author());
 		return mv;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/newAuthor")
 	public String saveAuthor(@ModelAttribute Author author ,  BindingResult bindingResult) {
-		
+
 		if (bindingResult.hasErrors()) {
-            return "author/form";
-        }
+			return "author/form";
+		}
 		authorService.save(author);
-		
+
 		return "redirect:/author/newAuthor";
 	}
-	
+
 	@GetMapping("/list")
 	public ModelAndView listAuthors() {
 		List<Author> authors = authorService.findAll();
 		System.out.println(authors.size());
-		
+
 		ModelAndView mv = new ModelAndView("author/list");
-		mv.addObject("authors",authors);
 		
+		if(userService.getLogin().equals("anonymousUser")) {
+
+		}else {
+			User user = userService.findByUsername(userService.getLogin());
+			mv.addObject("user", user);
+		}
+
+		
+		mv.addObject("authors",authors);
+
 		return mv;
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -70,31 +84,31 @@ public class AuthorController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return mv;
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/delete/{id}")
 	public String deleteAuthor(@PathVariable("id") long id) {
-		
+
 		try {
 			authorService.delet(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "redirect:/author/list";
 	}
-	
-	
-	
+
+
+
 	public Author findAuthorById(Long id) {
-		
+
 		return authorService.findAuthorById(id);
 	}
-	
+
 	/**
 	 * **************NOTA**************
 	 * metodo para deletar
@@ -103,12 +117,12 @@ public class AuthorController {
 	 * @return
 	 */
 	public void delet(long id) {
-		
+
 		authorService.delet(id);
 	}
-	
-	
 
-	
+
+
+
 
 }

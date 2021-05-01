@@ -41,6 +41,12 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/publishingCompany/list">Editoras</a></li>
 
+						<li sec:authorize="hasRole('USER')" class="nav-item"><a
+							class="nav-link" href="/publishingCompany/list">Endereços</a></li>
+						<li sec:authorize="hasRole('USER')" class="nav-item"><a
+							class="nav-link" href="/signUp">Editar Perfil</a></li>
+						<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a
+							class="nav-link" href="/order/list">Pedidos</a></li>
 
 						<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
@@ -52,17 +58,24 @@
 								<li><a class="dropdown-item" href="/author/newAuthor">Autor</a></li>
 								<li><a class="dropdown-item"
 									href="/publishingCompany/newPublishingCompany">Editora </a></li>
+								<li><a class="dropdown-item" href="#">Categoria</a></li>
+								<li><a class="dropdown-item" href="#">Forma de
+										Pagamento</a></li>
 							</ul></li>
 						<li sec:authorize="hasRole('USER')" class="nav-item"><a
 							class="nav-link" href="/cart">Carrinho</a></li>
+						<li sec:authorize="hasRole('USER')" class="nav-item"><a
+							class="nav-link" href="/order/myOrders">Meus Pedidos</a></li>
+
 					</ul>
 
 				</div>
 				<font size="5" color="white"> Bem vindo! <span
 					sec:authentication="name">Bob</span> .
-				</font> <a type="button" class="btn btn-outline-primary" href="/signUp">
-					Cadastre-se </a> <a type="button" class="btn btn-outline-primary"
-					href="/signIn"> Login </a>
+				</font> <a th:if="${#bools.isTrue(user) == false}" type="button"
+					class="btn btn-outline-primary" href="/signUp"> Cadastre-se </a> <a
+					th:if="${#bools.isTrue(user) == false}" type="button"
+					class="btn btn-outline-primary" href="/signIn"> Login </a>
 
 				<form action="/logout" method="post" class="d-flex">
 

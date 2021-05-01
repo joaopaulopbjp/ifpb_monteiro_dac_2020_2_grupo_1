@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.dac.springdata.model.PublishingCompany;
+import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.service.PublishingCompanyService;
+import br.edu.ifpb.dac.springdata.service.UserService;
 
 @Controller
 @RequestMapping("/publishingCompany")
 public class PublishingCompanyController {
 
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private PublishingCompanyService publishingCompanyService;
@@ -51,6 +55,12 @@ public class PublishingCompanyController {
 		System.out.println(publishers.size());
 		
 		ModelAndView mv = new ModelAndView("publishing-company/list");
+		if(userService.getLogin().equals("anonymousUser")) {
+
+		}else {
+			User user = userService.findByUsername(userService.getLogin());
+			mv.addObject("user", user);
+		}
 		mv.addObject("publishers",publishers);
 		
 		return mv;
