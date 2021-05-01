@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	taglib prefix="sec" uri="http://www.springframework.org/security/tags">
+	xmlns:th="http://www.thymeleaf.org" taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags">
 
 <head th:fragment="pag-head">
 <!-- Required meta tags -->
@@ -40,8 +40,8 @@
 						</li>
 						<li class="nav-item"><a class="nav-link"
 							href="/publishingCompany/list">Editoras</a></li>
-							
-							
+
+
 						<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -53,18 +53,17 @@
 								<li><a class="dropdown-item"
 									href="/publishingCompany/newPublishingCompany">Editora </a></li>
 							</ul></li>
+						<li sec:authorize="hasRole('USER')" class="nav-item"><a
+							class="nav-link" href="/cart">Carrinho</a></li>
 					</ul>
 
 				</div>
-				<span sec:authentication="name">Bob</span>
-				<a type="button" class="btn btn-outline-primary"
-					href="/signUp"> Cadastre-se
-				</a>
-				
-				<a type="button" class="btn btn-outline-primary"
-					href="/signIn"> Login
-				</a>
-				
+				<font size="5" color="white"> Bem vindo! <span
+					sec:authentication="name">Bob</span> .
+				</font> <a type="button" class="btn btn-outline-primary" href="/signUp">
+					Cadastre-se </a> <a type="button" class="btn btn-outline-primary"
+					href="/signIn"> Login </a>
+
 				<form action="/logout" method="post" class="d-flex">
 
 					<button type="submit" class="btn btn-outline-danger">Sair</button>

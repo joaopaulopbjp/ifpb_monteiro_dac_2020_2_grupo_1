@@ -87,7 +87,7 @@ public class BookService{
 	}
 	
 	//METODO PARA RETORNAR OS LIVROS DE FORMA PAGINADA PELO PREÇO
-	public Page<Book> findAll(int page, int size){
+	public Page<Book> findAllPage(int page, int size){
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "price");
 		return bookRepository.findAll(pageRequest);
 	}
@@ -120,6 +120,15 @@ public class BookService{
 		List<Book> list = page.getContent();
 		
 		return list;
+	}
+	
+	public List<Book> findByTitleContaining(String bookName){
+		
+		return bookRepository.findByTitleContaining(bookName);
+	}
+	
+	public List<Book> findAll(){
+		return bookRepository.findAll();
 	}
 	
 }

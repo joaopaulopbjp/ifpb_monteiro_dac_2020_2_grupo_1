@@ -14,12 +14,29 @@
 		<h1>
 			<font size="6" face="Times" th:text="${book.title}"></font>
 		</h1>
-		<div class="col-md-3">
-				<img th:src="@{/book/info/cover/{imgPath}(imgPath=${book.imgId})}"
-					class="img-rounded" alt="Responsive image" height="300" width="200">
-			</div>
+
 		<div class="row">
-			
+			<div class="row" sec:authorize="hasRole('USER')">
+
+				<div class="col-md-4">
+					<img th:src="@{/book/info/cover/{imgPath}(imgPath=${book.imgId})}"
+						class="img-rounded" alt="Responsive image" height="300"
+						width="200">
+				</div>
+				<div class="col-md-4">
+					<b>Preço:</b> <font color="green" size="6"><span
+							th:text="${book.price}"></span>R$</font>
+
+				</div>
+				<form action="/cart" class="col-md-4">
+					<div class="col-md-8">
+						<a type="button" class="btn btn-primary" href="/signUp">
+							Adicionar no Carinho </a>
+					</div>
+					<div></div>
+				</form>
+
+			</div>
 			<div class="col-md-3">
 				<b>Número de Páginas</b>
 				<p th:text="${book.nbOfPage}"></p>
@@ -29,17 +46,17 @@
 				<b>Editora</b>
 				<p th:text="${book.publishingCompany.namePublishingCompany}"></p>
 			</div>
-		
+
 			<div class="col-md-3">
 				<b>ISBN</b>
 				<p th:text="${book.isbn}"></p>
 			</div>
-		
+
 			<div class="col-md-6">
 				<b>Descrição</b>
 				<p th:text="${book.description}"></p>
 			</div>
-			
+
 		</div>
 	</div>
 

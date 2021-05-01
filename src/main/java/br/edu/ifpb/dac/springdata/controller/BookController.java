@@ -40,9 +40,6 @@ import org.springframework.data.domain.PageRequest;
  * @author: Gabriel Oliveira && Alisson
  */
 
-
-
-
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -104,10 +101,11 @@ public class BookController {
 		
 		return "redirect:/book/list";
 	}
+
 	@GetMapping("/list")
-	public ModelAndView listBook() {
-		List<Book> books = bookService.getBooks(0, 5);
-		System.out.println(books.size());
+	public ModelAndView listBook(@RequestParam(defaultValue = "") String title) {
+	
+		List<Book> books = bookService.findByTitleContaining(title);
 		
 		ModelAndView mv = new ModelAndView("book/list");
 		mv.addObject("books",books);
@@ -171,6 +169,5 @@ public class BookController {
 		System.out.println();
 		return mv;
 	}
-	
-	
+		
 }
