@@ -8,11 +8,13 @@ O nosso projeto inicial será uma loja virtual que vende livros online, através
 
 Para execução do projeto inicialmente faça o clone do link: https://github.com/joaopaulopbjp/ifpb_monteiro_dac_2020_2_grupo_1
 
+<b>OBS: antes de executar, vá em src/main/java/br/edu/ifpb/dac/springdata/ScheduledTasks.java e edite senha/usuario,para o primeiro o adiministrador. </b>
+
 
 <h3 align="center">Ferramentas</h3>
-Mysql
-Spring Tool Suite
-Visual Studio(opcional)
+Mysql<\p>
+Spring Tool Suite<\p>
+Visual Studio(opcional)<\p>
 
 <h3 align="center">Funcionais</h3>
 
