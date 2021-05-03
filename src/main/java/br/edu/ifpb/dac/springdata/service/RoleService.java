@@ -15,9 +15,9 @@ public class RoleService {
 	@Autowired
 	private RoleRepository repository;
 	
-//	public Role findByNome(String nome){
-//		return repository.findByNome(nome);
-//	}
+	public Role findByNomeRole(String nomeRole){
+		return repository.findByNomeRole(nomeRole);
+	}
 	
 	public boolean create (Role role){
 		repository.saveAndFlush(role);

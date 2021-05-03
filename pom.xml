@@ -7,13 +7,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.3</version>
+		
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ifbp.testes</groupId>
 	<artifactId>myanimelist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>myanimelist</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Livaria Oline</name>
+	<description>Projeto Desenvolvido para nota parcial da disciplina de corporativos do curso Análise e Desenvolvimento de Sistemas</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -33,6 +34,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+			<!-- MTSQL DRIVER--> 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -52,10 +54,12 @@
 			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
+			<!-- SPRING SECURITY--> 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+			<!-- Thymeleaf--> 
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>

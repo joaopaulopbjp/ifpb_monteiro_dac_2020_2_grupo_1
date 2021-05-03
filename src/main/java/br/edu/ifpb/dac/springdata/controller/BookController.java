@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 
 import br.edu.ifpb.dac.springdata.model.Author;
 import br.edu.ifpb.dac.springdata.model.Book;
@@ -34,8 +33,7 @@ import br.edu.ifpb.dac.springdata.service.BookService;
 import br.edu.ifpb.dac.springdata.service.PublishingCompanyService;
 import br.edu.ifpb.dac.springdata.service.UserService;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 
 /**
  * camada intermediária responsavel por gerenciar Book
@@ -154,6 +152,7 @@ public class BookController {
 		return "redirect:/book/list";
 	}
 	
+	@SuppressWarnings("null")
 	@GetMapping("/info/cover/{imgPath}")
 	@ResponseBody
 	public byte[] retornarImagem(@PathVariable("imgPath") String imagem) throws IOException {

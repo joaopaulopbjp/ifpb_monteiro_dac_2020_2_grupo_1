@@ -24,7 +24,7 @@ public class UserService {
 		String passwordBC = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPasswordUser(passwordBC);
 		
-		return userRepository.save(user);
+		return userRepository.saveAndFlush(user);
 	}
 	
 	public User findById(Long id) throws Exception {

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.dac.springdata.model.Author;
-import br.edu.ifpb.dac.springdata.model.Book;
 import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.service.AuthorService;
 import br.edu.ifpb.dac.springdata.service.UserService;

@@ -34,5 +34,8 @@ public class Payment {
 	public BigDecimal getValue() {
 		return value;
 	}
+	public String getTipo() {
+		return tipo;
+	}
 
 }

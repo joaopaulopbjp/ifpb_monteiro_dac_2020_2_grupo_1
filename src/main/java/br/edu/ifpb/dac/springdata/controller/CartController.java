@@ -21,7 +21,7 @@ import br.edu.ifpb.dac.springdata.model.Pedido;
 import br.edu.ifpb.dac.springdata.model.User;
 import br.edu.ifpb.dac.springdata.service.BookService;
 import br.edu.ifpb.dac.springdata.service.CarrinhoService;
-import br.edu.ifpb.dac.springdata.service.HistoricoService;
+
 import br.edu.ifpb.dac.springdata.service.UserService;
 import dto.CorreioDTO;
 import restCliente.ClienteRest;
@@ -41,8 +41,8 @@ public class CartController {
 	@Autowired
 	private CarrinhoService crudCarrinho;
 	
-	@Autowired
-	private HistoricoService crudHistorico;
+//	@Autowired
+//	private HistoricoService crudHistorico;
 	
 	
 	

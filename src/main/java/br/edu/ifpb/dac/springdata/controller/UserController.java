@@ -28,6 +28,7 @@ public class UserController {
 	@PostMapping("/signUp")
     public String save(@ModelAttribute @Valid User usuario, BindingResult bindingResult) {
 		
+		@SuppressWarnings("unused")
 		ModelAndView mv = new ModelAndView("user/sing-up");
 		if (bindingResult.hasErrors()) {
             return "user/sing-up";
