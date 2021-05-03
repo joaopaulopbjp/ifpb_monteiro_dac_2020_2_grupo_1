@@ -47,7 +47,7 @@ public class BookService{
 		return bookRepository.findById(id).orElseThrow(null);
 	} 
 	
-	//METODO PARA ATUAIZAR INFORMAÇÕES DE UM LIVRO
+	//METODO PARA ATUALIZAR INFORMAÇÕES DE UM LIVRO
 	public Book update(Book book) throws Exception{
 
 		Book updateBook = bookRepository.findById(book.getId()).orElseThrow(null);
@@ -106,14 +106,15 @@ public class BookService{
 	
     //	METODO PARA CONSULTAR OS 5 LIVROS MAIS BARATOS;
 	// TAmbem serve para qualquer tipo de consulta relacionado a livros
-	public Page<Book> ListFiveBookByPrice(Pageable page){
-		
-		return bookRepository.findAll(page);
+	public List<Book> ListFiveBookByPrice(){
+		PageRequest pageRequest = PageRequest.of(0, 5, Sort.Direction.ASC, "price");
+		List<Book> list = bookRepository.findAll(pageRequest).getContent();
+		return list;
 			
 	}
 	
 	public List<Book> getBooks(int pages, int elements){
-		Page<Book> page = bookRepository.findAll(PageRequest.of(pages, elements, Sort.by(Sort.Direction.ASC,"title")));
+		Page<Book> page = bookRepository.findAll(PageRequest.of(pages, elements, Sort.by(Sort.Direction.DESC,"title")));
 
 		List<Book> list = page.getContent();
 		

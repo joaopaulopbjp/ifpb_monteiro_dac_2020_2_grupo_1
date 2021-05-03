@@ -16,7 +16,7 @@
 		</h1>
 
 		<div class="row">
-			<div class="row" sec:authorize="hasRole('USER')">
+			<div class="row">
 
 				<div class="col-md-4">
 					<img th:src="@{/book/info/cover/{imgPath}(imgPath=${book.imgId})}"
@@ -25,13 +25,13 @@
 				</div>
 				<div class="col-md-4">
 					<b>Preço:</b> <font color="green" size="6"><span
-							th:text="${book.price}"></span>R$</font>
+						th:text="${book.price}"></span>R$</font>
 
 				</div>
-				<form action="/cart" class="col-md-4">
+				<form action="/cart" class="col-md-4" sec:authorize="hasRole('USER')">
 					<div class="col-md-8">
-						<a type="button" class="btn btn-primary" href="/signUp">
-							Adicionar no Carinho </a>
+						<a type="button" class="btn btn-primary" href="#"> Adicionar
+							no Carinho </a>
 					</div>
 					<div></div>
 				</form>
@@ -57,6 +57,10 @@
 				<p th:text="${book.description}"></p>
 			</div>
 
+			<div class="col-md-6">
+				<b>Autor</b>
+				<p th:each="author : ${book.authors}" th:text="${author.name}"></p>
+			</div>
 		</div>
 	</div>
 

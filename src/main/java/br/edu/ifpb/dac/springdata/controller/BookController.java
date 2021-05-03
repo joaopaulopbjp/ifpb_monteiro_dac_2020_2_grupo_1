@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -156,10 +158,10 @@ public class BookController {
 	@GetMapping("/info/cover/{imgPath}")
 	@ResponseBody
 	public byte[] retornarImagem(@PathVariable("imgPath") String imagem) throws IOException {
-		System.out.println(imagem);
+		
 		File imagemArquivo = new File(imagePath + imagem);
 		if (imagem != null || imagem.trim().length() > 0) {
-			System.out.println("No IF");
+			
 			return Files.readAllBytes(imagemArquivo.toPath());
 		}
 		
@@ -180,5 +182,23 @@ public class BookController {
 		System.out.println();
 		return mv;
 	}
+	
+	@GetMapping("/list/price")
+	public ModelAndView listBookByPrice() {
+	
+		List<Book> books = bookService.ListFiveBookByPrice();
 		
+		ModelAndView mv = new ModelAndView("book/list");
+
+		if(userService.getLogin().equals("anonymousUser")) {
+
+		}else {
+			User user = userService.findByUsername(userService.getLogin());
+			mv.addObject("user", user);
+		}
+		mv.addObject("books",books);
+		
+		return mv;
+	}
+	
 }

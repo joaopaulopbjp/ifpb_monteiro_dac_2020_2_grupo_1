@@ -21,15 +21,18 @@
 				<div class="col-md-6">
 					<button type="submit" class="btn btn-primary">Pesquisar</button>
 				</div>
+				<div class="col-md-6">
+				<a href="/book/list/price" type="button" class="btn btn-link">Livros Mais Baratos</a>
+				</div>
 			</form>
-
+			
 			<div class="table-responsive  bw-tabela-simples">
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th>Capa</th>
 							<th>Título</th>
-							<th>Quantidade de Páginas</th>
+							<th>Preço</th>
 							<th>Autor</th>
 							<th>#</th>
 						</tr>
@@ -39,10 +42,12 @@
 							<td colspan="6">Sem livros</td>
 						</tr>
 						<tr th:each="book : ${books}">
-							<td th:text="${book.id}"></td>
+							<td class="text-center"><img
+							th:src="@{/book/info/cover/{imgPath}(imgPath=${book.imgId})}"
+							alt="Responsive image" width="90" height="120"></td>
 							<td th:text="${book.title}">Título</td>
-							<td th:text="${book.nbOfPage}">0</td>
-							<td>Nome do Autor</td>
+							<td th:text="${book.price}">0</td>
+							<td th:each="author : ${book.authors}" th:text="${author.name}">Nome do Autor</td>
 							<td><a type="button" class="btn btn-outline-primary"
 								th:href="@{/book/info/{id}(id = ${book.id})}"> <svg
 										xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -68,8 +68,8 @@ public class ScheduledTasks  implements ApplicationListener<ContextRefreshedEven
 	
 		if (user == null) {
 			User usuario = new User();
-			usuario.setUsername("sempus");
-			senha = "aidentro";
+			usuario.setUsername("admin");
+			senha = "admin";
 			usuario.setRoles(new ArrayList<>());
 			System.out.println("senhaDT:"+usuario.getPassword()); //1
 			usuario.getRoles().add(crudRole.findByNomeRole("ROLE_ADMIN")	);
